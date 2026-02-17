@@ -10,7 +10,9 @@ public class CollisionHandler : MonoBehaviour
     {
         spawnPlayer = transform.position; //store the player�s initial position 
     }
+
     Vector3 spawnPlayer;
+
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("I touched: " + collision.gameObject.name);

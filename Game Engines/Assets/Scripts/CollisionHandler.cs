@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
+    public BackPack myBackpack;
+    private Vector3 spawnPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        spawnPlayer = transform.position; //store the player�s initial position 
-    }
-
-    Vector3 spawnPlayer;
-
+        //store the player's initial position 
+        spawnPlayer = transform.position;
+        // Initialize the instance (this calls the constructor)
+        myBackpack = new BackPack(); 
+        // Use the instance to call methods
+        myBackpack.AddToBackpack();}
+    
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("I touched: " + collision.gameObject.name);
@@ -47,7 +51,8 @@ public class CollisionHandler : MonoBehaviour
         // Forces the physics engine to acknowledge the move immediately
         Physics.SyncTransforms();
         Debug.Log("Teleported to: " + spawnPlayer);
-        
+        // 1. Declare the variable at the top of your class
+    
 
     }
 }

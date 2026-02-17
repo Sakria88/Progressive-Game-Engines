@@ -8,23 +8,23 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public float moveSpeed = 40f;
     //40f= 40 meters per second or frame.
-    void Start()
+    private void Start()
     {
       HowToPlay();
     }
     
-   void FixedUpdate()
+   private void FixedUpdate()
     {
         Move();
     }
 
-    void HowToPlay()
+    private void HowToPlay()
         {
         Debug.Log("Welcome to the game!"); 
         Debug.Log("Use the WASD keys to move your character around.");
         // Code to display instructions on how to play the game
     }
-    void Move()
+    private void Move()
     {
         // Get input from the horizontal and vertical axes
         // and move the player accordingly
@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
         // depending on the input from the player
         // The moveSpeed variable is used to control how fast the player moves
         // Time.deltaTime is used to make the movement frame rate independent
-        float xValue = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        float zValue = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float xValue = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed ;
+        float zValue = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed ;
         //transform.Translate used to store and manipulate the scale,
         //rotation and position of an obj
         transform.Translate(xValue, 0, zValue);

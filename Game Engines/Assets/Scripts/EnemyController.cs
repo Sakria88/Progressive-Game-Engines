@@ -6,24 +6,40 @@ public class EnemyController : MonoBehaviour
 {
     //30f= 30 meters per second or frame.
     //Generally slower than player to give the player a chance to escape or fight back.
-    public float moveSpeed = 30f;
+    private float moveSpeed = 16f;
     // Reference to the player's transform
     public Transform player;
-    
-    void Start()
+    private bool isChasing = false;
+
+    private void Start()
     {
-       
+        Debug.Log("Enemy spawned. Waiting 5 seconds...");
+        Invoke("EnableChasing", 5f); // Start chasing after a delay of 5 seconds)
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-      if (player != null)
+        if (isChasing)
         {
-            ChasePlayer();
+            if (player != null)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                Debug.LogWarning("Player reference is missing. Enemy cannot chase.");
+            }
         }
+        
+    }
+    private void EnableChasing()
+    {
+        isChasing = true;
+        Debug.Log("5 seconds are up! Enemy is now chasing.");
     }
 
-    void ChasePlayer()
+
+    private void ChasePlayer()
     {
         //Calculate the step based on the moveSpeed and the time between frames
         float step = moveSpeed * Time.deltaTime;

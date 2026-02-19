@@ -15,18 +15,35 @@ public class CollisionHandler : MonoBehaviour
         // Initialize the instance (this calls the constructor)
         myBackpack = new BackPack(100); // You can specify a custom capacity if needed
         // Use the instance to call methods
-        myBackpack.AddToBackpack();}
+        myBackpack.AddToBackpack();
+    }
     
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("I touched: " + collision.gameObject.name);
-        if (collision.gameObject.GetComponent<CollectibleItem>() != null)
+        // Check if the collided object has the tag "Coin"
+        if (collision.gameObject.CompareTag("Coin"))
         {
+            Debug.Log("Player collided with a coin!");
             myBackpack.AddToBackpack(); // Add to backpack
+            if (CollectiblesManager.Instance != null)
+            {
+                CollectiblesManager.Instance.AddCoins(1); // Update the manager's coin count
+            }
+            else
+            {
+                Debug.LogWarning("CollectiblesManager instance is missing. Cannot add coins.");
+            }
+           
             Destroy(collision.gameObject); // Remove coin from world
-            Debug.Log("Collected a " + collision.gameObject.name);
         }
-        
+
+        if (collision.gameObject.CompareTag("SpeedBooster"))
+        {
+            Debug.Log("Player collided with a speed booster!");
+             myBackpack.AddToBackpack();
+            // Implement speed boost logic here (e.g., increase player speed for a duration)
+            Destroy(collision.gameObject); // Remove speed booster from world
+        }
         // Code to handle player collision with an enemy, such as reducing health or ending the game
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -35,12 +52,7 @@ public class CollisionHandler : MonoBehaviour
 
         }
 
-        if (collision.gameObject.CompareTag("Coin"))
-        {
-            Debug.Log("Player collided with a coin!");
-            myBackpack.AddToBackpack(); // Add to backpack
-            Destroy(collision.gameObject); // Remove coin from world
-        }
+      
         
     }
 
@@ -60,7 +72,6 @@ public class CollisionHandler : MonoBehaviour
             }
            
         }
-
         // this function  reset the player back to its initial position or a designated respawn point after colliding with an enemy
         transform.position = spawnPlayer; //store the players initial position or a respawn position
         // Forces the physics engine to acknowledge the move immediately

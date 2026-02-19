@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.13063006
+      value: 0.5414498
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.13063006
+      value: 0.5414498
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.13063006
+      value: 0.5414498
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8144
+      value: 2.887335
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1903
+      value: -3.388832
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       propertyPath: m_LocalRotation.w
@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
+      propertyPath: m_TagString
+      value: Coin
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6212982361251845480}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5436555504424261271}
   m_SourcePrefab: {fileID: 100100000, guid: ce9f9b265b6915941a613a241ccb44ac, type: 3}
 --- !u!1 &8502701642942223092 stripped
 GameObject:
@@ -93,6 +100,127 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718870826bab8ba4bafeeb5835171983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeOfItem: Coin
+  typeOfItem:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   floatFrequency: 1
   floatAmplitude: 0.5
+--- !u!65 &5436555504424261271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8502701642942223092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2, y: 2.5, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

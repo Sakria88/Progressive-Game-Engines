@@ -20,30 +20,7 @@ public class CollisionHandler : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the collided object has the tag "Coin"
-        if (collision.gameObject.CompareTag("Coin"))
-        {
-            Debug.Log("Player collided with a coin!");
-            myBackpack.AddToBackpack(); // Add to backpack
-            if (CollectiblesManager.Instance != null)
-            {
-                CollectiblesManager.Instance.AddCoins(1); // Update the manager's coin count
-            }
-            else
-            {
-                Debug.LogWarning("CollectiblesManager instance is missing. Cannot add coins.");
-            }
-           
-            Destroy(collision.gameObject); // Remove coin from world
-        }
-
-        if (collision.gameObject.CompareTag("SpeedBooster"))
-        {
-            Debug.Log("Player collided with a speed booster!");
-             myBackpack.AddToBackpack();
-            // Implement speed boost logic here (e.g., increase player speed for a duration)
-            Destroy(collision.gameObject); // Remove speed booster from world
-        }
+    
         // Code to handle player collision with an enemy, such as reducing health or ending the game
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -55,6 +32,33 @@ public class CollisionHandler : MonoBehaviour
       
         
     }
+
+    // Change this method name and the parameter type (Collision -> Collider)
+    void OnTriggerEnter(Collider other) 
+    {
+        Debug.Log("Touched something named: " + other.name + " with Tag: " + other.tag);
+        // Check if the player collided with a coin
+        if (other.CompareTag("Coin"))
+        {
+            Debug.Log("Player picked up a coin!");
+            myBackpack.AddToBackpack();
+            
+            if (CollectiblesManager.Instance != null)
+            {
+                CollectiblesManager.Instance.AddCoins(1);
+            }
+            
+            Destroy(other.gameObject); 
+        }
+
+        if (other.CompareTag("SpeedBooster"))
+        {
+            Debug.Log("Speed boost collected!");
+            Destroy(other.gameObject);
+        }
+        
+    }
+   
 
 
     //variable to store the players initial position or a respawn position

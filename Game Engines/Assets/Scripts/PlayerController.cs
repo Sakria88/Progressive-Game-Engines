@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpeed = 40f;
-    public float laneWidth = 6f; // The width of each lane
+    public float laneWidth = 11f; // The width of each lane
     //40f= 40 meters per second or frame.
     private void Start()
     {

@@ -122,493 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &438039715
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.size
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[0]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[1]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[2]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[3]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[4]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[5]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[6]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[7]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[8]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[9]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[10]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[11]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[12]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[13]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[14]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[15]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[16]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[17]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[18]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[19]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[20]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[21]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[22]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[23]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[24]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[25]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[26]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[27]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[28]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[29]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[30]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[31]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[32]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[33]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[34]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[35]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[36]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[37]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[38]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[39]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[40]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[41]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[42]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[43]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[44]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[45]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[46]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[47]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[48]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[49]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[50]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[51]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[52]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[53]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[54]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[55]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[56]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[57]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[58]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[59]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[60]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[61]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[62]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[63]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[64]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[65]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[66]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[67]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[68]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[69]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[70]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[71]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[72]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[73]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[74]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[75]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[76]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[77]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[78]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[79]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[80]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[81]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[82]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[83]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[84]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[85]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[86]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[87]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[88]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[89]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[90]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[91]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[92]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[93]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[94]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[95]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[96]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[97]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[98]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6212982361251845480, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: typeOfItem.Array.data[99]
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_Name
-      value: CoinPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_TagString
-      value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5414498
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5414498
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5414498
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.99392
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 788735486}
-    - targetCorrespondingSourceObject: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 788735487}
-  m_SourcePrefab: {fileID: 100100000, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+--- !u!1 &444763566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+  m_PrefabInstance: {fileID: 1527695762}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &679123255
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,48 +368,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 71.029, y: -98.649, z: -75.279}
---- !u!1 &788735483 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-  m_PrefabInstance: {fileID: 438039715}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &788735486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788735483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae915e7abdba3704b90f45ba0568c219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoinPrefab: {fileID: 788735483}
-  SpeedBooster: {fileID: 0}
-  totalCollectibles: 100
-  spawnRangeX: 10
---- !u!65 &788735487
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788735483}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &854058561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1218,8 +694,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6.507869, y: 13.216894, z: 2.8247516}
+  m_Center: {x: -0.657208, y: 5.608448, z: -0.41237742}
 --- !u!23 &1374445917
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1320,7 +796,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 126
   m_CollisionDetection: 1
@@ -1329,27 +805,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7459830877477434147, guid: 39dd439ba09aa474ca7fa267336ccbf7, type: 3}
   m_PrefabInstance: {fileID: 281647302208294167}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1413242973
-BoxCollider:
+--- !u!1001 &1527695762
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413242970}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_Name
+      value: CoinPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.887335
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.388832
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130057261455231054, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
 --- !u!1 &1661950748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,6 +1003,57 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: 293.695}
   m_LocalScale: {x: 22.02712, y: 0.33714873, z: 214.69502}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1883435735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1883435737}
+  - component: {fileID: 1883435736}
+  m_Layer: 0
+  m_Name: CollectableManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1883435736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883435735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae915e7abdba3704b90f45ba0568c219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoinPrefab: {fileID: 444763566}
+  SpeedBooster: {fileID: 1413242970}
+  playerTransform: {fileID: 1374445919}
+  totalCollectibles: 100
+  spawnZOffset: 50
+  spawnRangeX: 10
+  distanceBetweenCoins: 50
+--- !u!4 &1883435737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883435735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.19400525, y: 0.7637739, z: -12.610458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1711,10 +1274,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7459830877477434147, guid: 39dd439ba09aa474ca7fa267336ccbf7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1413242973}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39dd439ba09aa474ca7fa267336ccbf7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1726,7 +1286,8 @@ SceneRoots:
   - {fileID: 1661950755}
   - {fileID: 1374445919}
   - {fileID: 679123260}
-  - {fileID: 438039715}
   - {fileID: 281647302208294167}
   - {fileID: 854058561}
   - {fileID: 1152223754}
+  - {fileID: 1883435737}
+  - {fileID: 1527695762}

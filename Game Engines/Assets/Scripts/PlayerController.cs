@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpeed = 40f;
+    public float laneWidth = 6f; // The width of each lane
     //40f= 40 meters per second or frame.
     private void Start()
     {
@@ -38,6 +39,9 @@ public class PlayerController : MonoBehaviour
         //transform.Translate used to store and manipulate the scale,
         //rotation and position of an obj
         transform.Translate(xValue, 0, zValue);
+        // Clamp the player's position to stay within the lanes
+        float clampedX = Mathf.Clamp(transform.position.x, -laneWidth, laneWidth);
+        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 
     //FixedUpdate function is similarly to Update function

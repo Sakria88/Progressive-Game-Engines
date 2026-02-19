@@ -37,4 +37,5 @@ public class CollectibleItem : MonoBehaviour
         tempPos.y += Mathf.Sin(Time.fixedTime * floatFrequency) * floatAmplitude;
         transform.position = tempPos;
     }
+    
 }

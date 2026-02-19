@@ -7,7 +7,9 @@ public class CollectiblesManager : MonoBehaviour
 {
     // The prefab we want to spawn (the Coin)
     public GameObject CoinPrefab;
+    public static CollectiblesManager Instance; 
     
+    private int coinCount = 0;
     // How many to spawn
     public int totalCollectibles = 10;
     
@@ -32,6 +34,40 @@ public class CollectiblesManager : MonoBehaviour
 
             // Spawn the object
             Instantiate(CoinPrefab, randomPos, Quaternion.identity);
+        }
+    }
+    private void Awake()
+    {
+        // Ensure only one manager exists
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddCoins(int amount)
+    {
+        //update the coin count and log it
+        coinCount += amount;
+        Debug.Log("Total Coins: " + coinCount);
+    }
+
+    public bool TrySpendCoins(int amount)
+    {
+        if (coinCount >= amount)
+        {
+            coinCount -= amount;
+            Debug.Log("Spent " + amount + " coins. Remaining: " + coinCount);
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough coins to spend! Current: " + coinCount);
+            return false;
         }
     }
 }

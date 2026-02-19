@@ -13,13 +13,20 @@ public class CollisionHandler : MonoBehaviour
         //store the player's initial position 
         spawnPlayer = transform.position;
         // Initialize the instance (this calls the constructor)
-        myBackpack = new BackPack(); 
+        myBackpack = new BackPack(100); // You can specify a custom capacity if needed
         // Use the instance to call methods
         myBackpack.AddToBackpack();}
     
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("I touched: " + collision.gameObject.name);
+        if (collision.gameObject.GetComponent<CollectibleItem>() != null)
+        {
+            myBackpack.AddToBackpack(); // Add to backpack
+            Destroy(collision.gameObject); // Remove coin from world
+            Debug.Log("Collected a " + collision.gameObject.name);
+        }
+        
         // Code to handle player collision with an enemy, such as reducing health or ending the game
         if (collision.gameObject.CompareTag("Enemy"))
         {

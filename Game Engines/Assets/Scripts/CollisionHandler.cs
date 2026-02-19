@@ -34,6 +34,14 @@ public class CollisionHandler : MonoBehaviour
             RespawnPlayer();
 
         }
+
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Debug.Log("Player collided with a coin!");
+            myBackpack.AddToBackpack(); // Add to backpack
+            Destroy(collision.gameObject); // Remove coin from world
+        }
+        
     }
 
 

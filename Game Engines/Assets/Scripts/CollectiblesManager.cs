@@ -18,10 +18,10 @@ public class CollectiblesManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnCollectibles();
+        StartCoroutine(SpawnCollectiblesOverTime());
     }
 
-    void SpawnCollectibles()
+    IEnumerator SpawnCollectiblesOverTime()
     {
         for (int i = 0; i < totalCollectibles; i++)
         {
@@ -35,6 +35,7 @@ public class CollectiblesManager : MonoBehaviour
             // Spawn the object
             Instantiate(CoinPrefab, randomPos, Quaternion.identity);
         }
+        yield return new WaitForSeconds(1f); // Wait a bit before spawning the next batch (optional)
     }
     private void Awake()
     {

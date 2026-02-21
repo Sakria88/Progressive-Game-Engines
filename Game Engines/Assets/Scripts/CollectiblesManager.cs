@@ -42,8 +42,12 @@ public class CollectiblesManager : MonoBehaviour
     }
     private void SpawnSpeedBooster()
     {
-        Vector3 spawnPos = new Vector3(0, 3f, playerTransform.position.z + spawnZOffset + (totalCollectibles * distanceBetweenCoins) + 30f);
+        float initialZ = playerTransform.position.z + spawnZOffset + 20f; // Start spawning boosters 20 units ahead of the player
+        
+        Vector3 spawnPos = new Vector3(0, 3f, initialZ); // Spawn the first booster
+        
         Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
+        lastBoosterZ = initialZ; // Initialize the last booster position    
     }
     void SpawnInitialCoins()
     {
@@ -78,7 +82,7 @@ public class CollectiblesManager : MonoBehaviour
         // Every 5 coins, spawn a speed booster
         if (coinCount % 5 == 0) 
         {
-            float nextBoosterZ = lastBoosterZ + 20f; // Spawn a bit further ahead than the next coin
+            float nextBoosterZ = playerTransform.position.z + 30f; // Spawn a bit further ahead than the next coin
             Debug.Log("Spawning Booster at: " + nextBoosterZ);
             // Spawn a bit further ahead than the next coin to give the player time to react
             SpawnSpeedBoosterAt(nextBoosterZ); 
@@ -87,17 +91,13 @@ public class CollectiblesManager : MonoBehaviour
 
     private void SpawnSpeedBoosterAt(float zPos)
     {
-        // same X range as coins so it stays on the floor
-        Vector3 spawnPos = new Vector3(
-            UnityEngine.Random.Range(-spawnRangeX, spawnRangeX), 
-            3f, // same height as coins to keep the same visual plane
-            zPos
-        );
-
+        float initialZ = playerTransform.position.z + spawnZOffset + (totalCollectibles * distanceBetweenCoins) + 20f;
+        // Default position if zPos is not greater than initialZ
+        Vector3 spawnPos = new Vector3(0, 3f, initialZ); 
         GameObject booster = Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
         booster.tag = "SpeedBooster"; // Important for your CollisionHandler!
         
-        lastBoosterZ = zPos; // Update the last booster position
+        lastBoosterZ = initialZ; // Update the last booster position
     }
 
     public bool TrySpendCoins(int amount)

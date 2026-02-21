@@ -18,7 +18,8 @@ public class CollectiblesManager : MonoBehaviour
     public float spawnZOffset = 50f;
     
     public float spawnRangeX = 10f; // Range for random spawning
-    public float distanceBetweenCoins = 20f; // Distance between each coin
+    public float distanceBetweenCoins = 20f;
+    private float lastBoosterZ;// Distance between each coin
     // The area where they can spawn
     private void Awake()
     {
@@ -65,24 +66,7 @@ public class CollectiblesManager : MonoBehaviour
     newCoin.tag = "Coin"; // Ensure the coin has the correct tag for collision detection
 
     }
-    //IEnumerator SpawnCollectiblesOverTime()
-    //{
-        //for (int i = 0; i < totalCollectibles; i++)
-        //{
-            // Generate a random position
-           //Vector3 randomPos = new Vector3(
-               // Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2),
-                //1.0f, // Height off the ground
-                //Random.Range(-spawnAreaSize.z / 2, spawnAreaSize.z / 2)
-           // );
-
-            // Spawn the object
-           // Instantiate(CoinPrefab, randomPos, Quaternion.identity);
-            // Wait a bit before spawning the next batch to avoid overwhelming the player
-            //yield return new WaitForSeconds(0.5f);
-        //}
-        
-    //}
+    
     public void AddCoins(int amount)
     {
         //update the coin count and log it
@@ -90,6 +74,30 @@ public class CollectiblesManager : MonoBehaviour
         Debug.Log("Total Coins: " + coinCount);
         float spawnFarAhead = playerTransform.position.z + (totalCollectibles * distanceBetweenCoins);
         SpawnCoinAtPosition(spawnFarAhead);
+
+        // Every 5 coins, spawn a speed booster
+        if (coinCount % 5 == 0) 
+        {
+            float nextBoosterZ = lastBoosterZ + 20f; // Spawn a bit further ahead than the next coin
+            Debug.Log("Spawning Booster at: " + nextBoosterZ);
+            // Spawn a bit further ahead than the next coin to give the player time to react
+            SpawnSpeedBoosterAt(nextBoosterZ); 
+        }
+    }
+
+    private void SpawnSpeedBoosterAt(float zPos)
+    {
+        // same X range as coins so it stays on the floor
+        Vector3 spawnPos = new Vector3(
+            UnityEngine.Random.Range(-spawnRangeX, spawnRangeX), 
+            3f, // same height as coins to keep the same visual plane
+            zPos
+        );
+
+        GameObject booster = Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
+        booster.tag = "SpeedBooster"; // Important for your CollisionHandler!
+        
+        lastBoosterZ = zPos; // Update the last booster position
     }
 
     public bool TrySpendCoins(int amount)

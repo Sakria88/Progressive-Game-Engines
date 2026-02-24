@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     //30f= 30 meters per second or frame.
     //Generally slower than player to give the player a chance to escape or fight back.
-    private float moveSpeed = 16f;
+    private float moveSpeed = 12f;
     // Reference to the player's transform
     public Transform player;
     private bool isChasing = false;
@@ -50,6 +50,6 @@ public class EnemyController : MonoBehaviour
         //transform.LookAt(player) - the entire player object to look at
         transform.LookAt(player);
     }
-    // Start is called before the first frame update
+    
   
 }

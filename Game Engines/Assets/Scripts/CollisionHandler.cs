@@ -7,6 +7,7 @@ public class CollisionHandler : MonoBehaviour
 {
     public BackPack myBackpack;
     private Vector3 spawnPlayer;
+    private bool hitObstacle = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,21 @@ public class CollisionHandler : MonoBehaviour
         myBackpack = new BackPack(100); // You can specify a custom capacity if needed
         // Use the instance to call methods
         myBackpack.AddToBackpack();
+        StartCoroutine(CheckObstacleTimer());
     }
     
+    IEnumerator CheckObstacleTimer()
+    {
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(5f);
+
+        
+        if (!hitObstacle)
+        {
+            Debug.Log("5 seconds passed and no obstacle was hit!");
+            
+        }
+    }
     void OnCollisionEnter(Collision collision)
     {
     
@@ -28,7 +42,13 @@ public class CollisionHandler : MonoBehaviour
             RespawnPlayer();
 
         }
-
+        // Check if the player collided with an obstacle
+        if (collision.gameObject.CompareTag("Obstacle"))    
+        {
+            Debug.Log("Player hit an obstacle!");
+            hitObstacle = true; // Set the flag to true if an obstacle is hit
+            RespawnPlayer();
+        }
       
         
     }
@@ -50,6 +70,7 @@ public class CollisionHandler : MonoBehaviour
             
             Destroy(other.gameObject); 
         }
+
 
         if (other.CompareTag("SpeedBooster"))
         {

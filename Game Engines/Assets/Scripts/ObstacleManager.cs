@@ -11,9 +11,10 @@ public class ObstacleManager : MonoBehaviour
     public int shelfLimit = 40;
     
     
-    public float spawnDistanceAhead = 50f; // How far ahead to spawn
-    public float spawnRangeX = 20f;        // Floor width (Left/Right)
+    public float spawnDistanceAhead = 150f; // How far ahead to spawn
+    public float spawnRangeX = 100f;        // Floor width (Left/Right)
     public float floorYPosition = 3f;
+    public float distanceBetweenObstacles = 150f;
     public float spawnZOffset = 30f; // Initial offset for spawning obstacles   
     public List<GameObject> obstacleList = new List<GameObject>();
     void Awake()
@@ -38,7 +39,7 @@ public class ObstacleManager : MonoBehaviour
         // Start spawning boosters 20 units ahead of the player
         for (int i = 0; i < shelfLimit; i++)
         {
-            float zPos = player.position.z + spawnDistanceAhead + (i * 20f);
+            float zPos = player.position.z + spawnDistanceAhead + (i * distanceBetweenObstacles);
             SpawnNewObstacle(zPos);
         }
     }

@@ -18,7 +18,7 @@ public class CollectiblesManager : MonoBehaviour
     public float spawnZOffset = 50f;
     
     public float spawnRangeX = 10f; // Range for random spawning
-    public float distanceBetweenCoins = 30f;
+    public float distanceBetweenCoins = 70f;
     private float lastBoosterZ;// Distance between each coin
     // The area where they can spawn
     private void Awake()

@@ -199,9 +199,9 @@ GameObject:
   - component: {fileID: 58489779}
   - component: {fileID: 58489780}
   - component: {fileID: 58489781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310432126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1037292626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -844,9 +844,9 @@ GameObject:
   - component: {fileID: 1077569858}
   - component: {fileID: 1077569860}
   - component: {fileID: 1077569859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1176,6 +1176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8875590ef3f5cde4aa25fcf7cbc9eb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckDistance: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   moveSpeed: 40
   laneWidth: 8
 --- !u!65 &1374445916
@@ -1276,6 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fd6c5b704d1e745b738136ae056138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyController: {fileID: 679123256}
 --- !u!54 &1374445921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1298,7 +1303,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -1428,9 +1433,9 @@ GameObject:
   - component: {fileID: 1661950752}
   - component: {fileID: 1661950751}
   - component: {fileID: 1661950750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseFloor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1610,9 +1615,9 @@ GameObject:
   - component: {fileID: 1909216938}
   - component: {fileID: 1909216937}
   - component: {fileID: 1909216936}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseFloor2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

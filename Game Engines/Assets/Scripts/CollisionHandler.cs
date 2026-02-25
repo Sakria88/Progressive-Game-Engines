@@ -12,8 +12,9 @@ public class CollisionHandler : MonoBehaviour
     private Vector3 spawnPlayer;
     private PlayerController player;
     private Rigidbody rb;
-
+    public InfiniteFloor[] floors;
     private bool hitObstacle = false;
+    public EnemyController enemyController;
 
     void Start()
     {
@@ -93,7 +94,7 @@ public class CollisionHandler : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
 
-            rb.position = spawnPlayer;      // ✅ use rb.position (physics-safe)
+            rb.position = spawnPlayer;      // 
             rb.rotation = Quaternion.identity; // optional, only if you want reset rotation
         }
         else
@@ -103,6 +104,22 @@ public class CollisionHandler : MonoBehaviour
 
         Physics.SyncTransforms();
         Debug.Log("Teleported to: " + spawnPlayer);
+
+        if (enemyController != null)
+        {
+            enemyController.ResetEnemy();
+        }
+        else
+        {
+            Debug.LogWarning("EnemyController reference not set!");
+        }
+        if (floors != null)
+        {
+            foreach (var floor in floors)
+            {
+                floor.ResetFloor();
+            }
+        }
     }
 
 }

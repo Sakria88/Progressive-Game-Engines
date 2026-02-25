@@ -10,9 +10,11 @@ public class EnemyController : MonoBehaviour
     // Reference to the player's transform
     public Transform player;
     private bool isChasing = false;
+    private Vector3 startPosition;
 
     private void Start()
     {
+        startPosition = transform.position;
         Debug.Log("Enemy spawned. Waiting 5 seconds...");
         Invoke("EnableChasing", 5f); // Start chasing after a delay of 5 seconds)
     }
@@ -50,6 +52,13 @@ public class EnemyController : MonoBehaviour
         //transform.LookAt(player) - the entire player object to look at
         transform.LookAt(player);
     }
-    
-  
+
+    public void ResetEnemy()
+    {
+        StopAllCoroutines(); // Stop any existing wait coroutines
+        isChasing = false; // Stop chasing
+        transform.position = startPosition; // Reset to start
+        Debug.Log("Enemy reset. Waiting 5 seconds...");
+        Invoke("EnableChasing", 5f); // Wait 5 seconds before chasing again
+    }
 }

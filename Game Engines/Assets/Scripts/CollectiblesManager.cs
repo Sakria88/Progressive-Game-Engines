@@ -61,13 +61,20 @@ public class CollectiblesManager : MonoBehaviour
     
     public void SpawnCoinAtPosition(float ZPos)
     {
+        if (CoinPrefab == null)
+        {
+            Debug.LogError("CoinPrefab is NULL or was destroyed. Assign a prefab asset from the Project window.");
+            return;
+        }
+
         Vector3 randomPos = new Vector3(
-            UnityEngine.Random.Range(-spawnRangeX, spawnRangeX), // Random Left/Right
-            3f,                                    // Hover slightly off the floor
+            UnityEngine.Random.Range(-spawnRangeX, spawnRangeX),
+            3f,
             ZPos
-    );
-    GameObject newCoin = Instantiate(CoinPrefab, randomPos, Quaternion.identity);
-    newCoin.tag = "Coin"; // Ensure the coin has the correct tag for collision detection
+        );
+
+        GameObject newCoin = Instantiate(CoinPrefab, randomPos, Quaternion.identity);
+        newCoin.tag = "Coin";
 
     }
     
@@ -91,13 +98,15 @@ public class CollectiblesManager : MonoBehaviour
 
     private void SpawnSpeedBoosterAt(float zPos)
     {
-        float initialZ = playerTransform.position.z + spawnZOffset + (totalCollectibles * distanceBetweenCoins) + 20f;
-        // Default position if zPos is not greater than initialZ
-        Vector3 spawnPos = new Vector3(0, 3f, initialZ); 
+        if (SpeedBooster == null)
+        {
+            Debug.LogError("SpeedBooster is NULL or was destroyed. Assign a prefab asset from the Project window.");
+            return;
+        }
+
+        Vector3 spawnPos = new Vector3(0, 3f, zPos);
         GameObject booster = Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
-        booster.tag = "SpeedBooster"; // Important for your CollisionHandler!
-        
-        lastBoosterZ = initialZ; // Update the last booster position
+        booster.tag = "SpeedBooster";
     }
 
     public bool TrySpendCoins(int amount)

@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 310432126}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,11 +344,6 @@ Transform:
   - {fileID: 1661950755}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &444763566 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
-  m_PrefabInstance: {fileID: 1527695762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &679123255
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +811,7 @@ GameObject:
   - component: {fileID: 1037292626}
   m_Layer: 0
   m_Name: Floor (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1303,10 +1298,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!1001 &1527695762
 PrefabInstance:
@@ -1579,7 +1574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae915e7abdba3704b90f45ba0568c219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoinPrefab: {fileID: 444763566}
+  CoinPrefab: {fileID: 8502701642942223092, guid: 0a2a28cb8c03b26419de722c1c877620, type: 3}
   SpeedBooster: {fileID: 7459830877477434147, guid: 39dd439ba09aa474ca7fa267336ccbf7, type: 3}
   playerTransform: {fileID: 1374445919}
   totalCollectibles: 100

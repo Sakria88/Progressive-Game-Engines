@@ -37,18 +37,10 @@ public class CollectiblesManager : MonoBehaviour
     void Start()
     {
        SpawnInitialCoins();
-       SpawnSpeedBooster();
+       AddSpeedBooster();
 
     }
-    private void SpawnSpeedBooster()
-    {
-        float initialZ = playerTransform.position.z + spawnZOffset + 20f; // Start spawning boosters 20 units ahead of the player
-        
-        Vector3 spawnPos = new Vector3(0, 3f, initialZ); // Spawn the first booster
-        
-        Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
-        lastBoosterZ = initialZ; // Initialize the last booster position    
-    }
+   
     void SpawnInitialCoins()
     {
         for (int i = 0; i < totalCollectibles; i++)
@@ -77,7 +69,7 @@ public class CollectiblesManager : MonoBehaviour
         newCoin.tag = "Coin";
 
     }
-    
+
     public void AddCoins(int amount)
     {
         //update the coin count and log it
@@ -85,30 +77,7 @@ public class CollectiblesManager : MonoBehaviour
         Debug.Log("Total Coins: " + coinCount);
         float spawnFarAhead = playerTransform.position.z + (totalCollectibles * distanceBetweenCoins);
         SpawnCoinAtPosition(spawnFarAhead);
-
-        // Every 5 coins, spawn a speed booster
-        if (coinCount % 5 == 0) 
-        {
-            float nextBoosterZ = playerTransform.position.z + 30f; // Spawn a bit further ahead than the next coin
-            Debug.Log("Spawning Booster at: " + nextBoosterZ);
-            // Spawn a bit further ahead than the next coin to give the player time to react
-            SpawnSpeedBoosterAt(nextBoosterZ); 
-        }
     }
-
-    private void SpawnSpeedBoosterAt(float zPos)
-    {
-        if (SpeedBooster == null)
-        {
-            Debug.LogError("SpeedBooster is NULL or was destroyed. Assign a prefab asset from the Project window.");
-            return;
-        }
-
-        Vector3 spawnPos = new Vector3(0, 3f, zPos);
-        GameObject booster = Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
-        booster.tag = "SpeedBooster";
-    }
-
     public bool TrySpendCoins(int amount)
     {
         if (coinCount >= amount)
@@ -123,4 +92,46 @@ public class CollectiblesManager : MonoBehaviour
             return false;
         }
     }
+    public void AddSpeedBooster()
+    {
+        if (coinCount % 5 == 0)
+        {
+            Debug.Log("Spawning Booster ");
+            float initialZ = playerTransform.position.z + spawnZOffset + 20f;
+            SpawnSpeedBoosterAt(initialZ);
+            lastBoosterZ = initialZ;
+        }
+    }
+
+   public void AddSpeedBoosterAt(float zPos)
+   {
+        SpawnSpeedBoosterAt(zPos);
+        lastBoosterZ = zPos;
+   }
+
+
+
+    private void SpawnSpeedBoosterAt(float zPos)
+    {
+        if (SpeedBooster == null)
+        {
+            Debug.LogError("SpeedBooster is NULL or was destroyed. Assign a prefab asset from the Project window.");
+            return;
+        }
+
+        Vector3 spawnPos = new Vector3(0, 3f, zPos);
+        GameObject booster = Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
+        booster.tag = "SpeedBooster";
+    }
+
+  
 }
+//private void SpawnSpeedBooster()
+//{
+//    float initialZ = playerTransform.position.z + spawnZOffset + 20f; // Start spawning boosters 20 units ahead of the player
+
+//    Vector3 spawnPos = new Vector3(0, 3f, initialZ); // Spawn the first booster
+
+//    Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
+//    lastBoosterZ = initialZ; // Initialize the last booster position    
+//}

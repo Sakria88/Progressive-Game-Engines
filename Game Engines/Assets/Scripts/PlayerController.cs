@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
     private float jumpForce = 7f;
-    private float forwardSpeed = 10f;
+    private float forwardSpeed = 20f;
     public float groundCheckDistance = 0.2f;
     public LayerMask groundLayer;
     // Start is called before the first frame update
@@ -19,13 +19,19 @@ public class PlayerController : MonoBehaviour
     //40f= 40 meters per second or frame.
     private float xInput;
     private bool jumpQueued;
-   
+
+    private float normalForwardSpeed;
+    private float normalMoveSpeed;
+    private bool speedBoostActive = false;
 
     private void Start()
     {
-      HowToPlay();
+      
       rb = GetComponent<Rigidbody>();
-       
+      normalForwardSpeed = forwardSpeed;
+      normalMoveSpeed = moveSpeed;
+      HowToPlay();
+
     }
     
     private void Update()
@@ -89,9 +95,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetGrounded(bool grounded)
-{
-    isGrounded = grounded;
-}
+    {
+        isGrounded = grounded;
+    }
     private void CheckGround()
     {
         isGrounded = Physics.Raycast(
@@ -103,5 +109,32 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red);
     }
+
+    public void ActivateSpeedBoost(float multiplier, float duration)
+    {
+        if (speedBoostActive)
+        {
+            StopAllCoroutines(); // refresh duration if already active
+        }
+        StartCoroutine(SpeedBoostRoutine(multiplier, duration));
+
+    }
+
+    private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    {
+        speedBoostActive = true;
+        forwardSpeed *= multiplier;
+        moveSpeed *= multiplier;
+        Debug.Log("Speed Boost Activated! Forward: " + forwardSpeed + ", Horizontal: " + moveSpeed);
+
+        yield return new WaitForSeconds(duration);
+
+        forwardSpeed = normalForwardSpeed;
+        moveSpeed = normalMoveSpeed;
+        speedBoostActive = false;
+        Debug.Log("Speed Boost Ended. Speed reset.");
+    }
+
+
 
 }

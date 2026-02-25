@@ -81,6 +81,11 @@ public class CollisionHandler : MonoBehaviour
         if (other.CompareTag("SpeedBooster"))
         {
             Debug.Log("Speed boost collected!");
+            PlayerController pc = GetComponent<PlayerController>();
+            if (pc != null)
+            {
+                pc.ActivateSpeedBoost(2f, 5f); // x2 speed for 5 seconds
+            }
             Destroy(other.gameObject);
         }
     }

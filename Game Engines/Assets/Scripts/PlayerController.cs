@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private float jumpForce = 7f;
     private float forwardSpeed = 10f;
-
-    // private Rigidbody rb;
+    public float groundCheckDistance = 0.2f;
+    public LayerMask groundLayer;
     // Start is called before the first frame update
     public float moveSpeed = 40f;
     public static PlayerController Instance;
@@ -19,17 +19,13 @@ public class PlayerController : MonoBehaviour
     //40f= 40 meters per second or frame.
     private float xInput;
     private bool jumpQueued;
+   
+
     private void Start()
     {
       HowToPlay();
       rb = GetComponent<Rigidbody>();
-        // rb = GetComponent<Rigidbody>();
-
-        // // Safety check: If you forgot to add a Rigidbody in Unity, this will tell you
-        // if (rb == null)
-        // {
-        //     Debug.LogError("Player is missing a Rigidbody component!");
-        // }
+       
     }
     
     private void Update()
@@ -38,12 +34,17 @@ public class PlayerController : MonoBehaviour
         xInput = Input.GetAxisRaw("Horizontal");  // A/D, Left/Right
 
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space pressed!");
             jumpQueued = true;
+        }
+
     }
    private void FixedUpdate()
     {
         Move();
         HandleJump();
+        CheckGround();
         
     }
 
@@ -54,13 +55,7 @@ public class PlayerController : MonoBehaviour
         // Code to display instructions on how to play the game
     }
 
-    // private void Move()
-    // {
-    //     float direction = Input.GetAxis("Horizontal"); // Get horizontal mouse movement
-    //     Vector3 lateralvelocity = rb.velocity;
-    //     lateralvelocity.x = direction * moveSpeed; // Adjust the lateral velocity based on mouse movement
-    //     rb.velocity = lateralvelocity; // Apply the new velocity to the Rigidbody
-    // }
+    
     private void Move()
     {
     Vector3 move = new Vector3(xInput * moveSpeed, 0f, forwardSpeed) * Time.fixedDeltaTime;
@@ -75,11 +70,13 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
+        Debug.Log("JumpQueued: " + jumpQueued + " | Grounded: " + isGrounded);
         if (!jumpQueued) return;
 
         if (isGrounded)
         {
-            // optional: reset vertical velocity so jump is consistent
+            Debug.Log("Jump executed!");
+
             Vector3 v = rb.velocity;
             v.y = 0f;
             rb.velocity = v;
@@ -91,9 +88,20 @@ public class PlayerController : MonoBehaviour
         jumpQueued = false;
     }
 
-public void SetGrounded(bool grounded)
+    public void SetGrounded(bool grounded)
 {
     isGrounded = grounded;
 }
+    private void CheckGround()
+    {
+        isGrounded = Physics.Raycast(
+            transform.position,
+            Vector3.down,
+            groundCheckDistance,
+            groundLayer
+        );
+
+        Debug.DrawRay(transform.position, Vector3.down * groundCheckDistance, Color.red);
+    }
 
 }

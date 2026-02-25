@@ -18,7 +18,7 @@ public class CollisionHandler : MonoBehaviour
     void Start()
     {
         player = GetComponent<PlayerController>();
-        spawnPlayer = transform.position;   // ✅ YOU MUST HAVE THIS
+        spawnPlayer = transform.position;   
 
         myBackpack = new BackPack(100);
         myBackpack.AddToBackpack();
@@ -32,17 +32,22 @@ public class CollisionHandler : MonoBehaviour
         if (!hitObstacle)
             Debug.Log("5 seconds passed and no obstacle was hit!");
     }
+   
+    private IEnumerator RespawnRoutine()
+    {
+        yield return null; // wait 1 frame
+        RespawnPlayer();
+    }
 
     void OnCollisionEnter(Collision collision)
     {
         // Grounded for jump (only if you tag your floor "Ground")
-        if (collision.gameObject.CompareTag("Ground"))
-            if (player != null) player.SetGrounded(true);
+        
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Player collided with an enemy!");
-            RespawnPlayer();
+            StartCoroutine(RespawnRoutine());
         }
 
         if (collision.gameObject.CompareTag("Obstacle"))
@@ -53,17 +58,9 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-            if (player != null) player.SetGrounded(true);
-    }
+    
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-            if (player != null) player.SetGrounded(false);
-    }
+   
 
     void OnTriggerEnter(Collider other)
     {

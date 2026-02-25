@@ -15,8 +15,25 @@ public class NPCManager : MonoBehaviour
     public float moveRange = 5f;
     public float waitTime = 1f;
 
+    [Header("NPC count")]
+    public int numNPCs = 10;           // Number per type
+    public float zSpacing = 300f;      // Distance between each NPC
+    public float laneWidth = 10f;      // Max horizontal deviation for side-to-side NPCs
+    public float forwardRange = 5f;
+
+
+    public Transform playerTransform;
+
+
     private void Start()
     {
+        if (playerTransform == null)
+        {
+            Debug.LogError("Player Transform not assigned in NPCManager!");
+            return;
+        }
+        SpawnNPCs();
+
         // Assign movement to forward-backward NPCs
         foreach (GameObject npc in NPCForward)
         {
@@ -29,6 +46,46 @@ public class NPCManager : MonoBehaviour
             AddNPCComponent(npc, NPC.NPCMovementType.SideToSide);
         }
     }
+
+    private void SpawnNPCs()
+    {
+        float startZ = playerTransform.position.z + 50f; // spawn ahead of player
+
+        // --- Forward-Backward NPCs ---
+        for (int i = 0; i < numNPCs; i++)
+        {
+            // Random X position within lane width so NPC stays on floor
+            float xPos = Random.Range(-laneWidth, laneWidth);
+            Vector3 pos = new Vector3(xPos, 0, startZ + i * zSpacing);
+
+            GameObject prefab = NPCForward[i % NPCForward.Count];
+
+            // Instantiate with prefab's original rotation and scale
+            GameObject npc = Instantiate(prefab, pos, prefab.transform.rotation);
+            npc.transform.localScale = prefab.transform.localScale;
+
+            npc.tag = "NPC";
+            AddNPCComponent(npc, NPC.NPCMovementType.ForwardBackward);
+        }
+
+        // --- Side-to-Side NPCs ---
+        for (int i = 0; i < numNPCs; i++)
+        {
+            // Random X position within lane width
+            float xPos = Random.Range(-laneWidth, laneWidth);
+            Vector3 pos = new Vector3(xPos, 0, startZ + i * zSpacing + zSpacing / 2f); // staggered
+
+            GameObject prefab = NPCSide[i % NPCSide.Count];
+
+            // Instantiate with prefab's original rotation and scale
+            GameObject npc = Instantiate(prefab, pos, prefab.transform.rotation);
+            npc.transform.localScale = prefab.transform.localScale;
+
+            npc.tag = "NPC";
+            AddNPCComponent(npc, NPC.NPCMovementType.SideToSide);
+        }
+    }
+
 
     private void AddNPCComponent(GameObject npc, NPC.NPCMovementType type)
     {

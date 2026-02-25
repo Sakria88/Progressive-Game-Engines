@@ -347,6 +347,11 @@ MonoBehaviour:
   moveSpeed: 15
   moveRange: 5
   waitTime: 0
+  numNPCs: 10
+  zSpacing: 500
+  laneWidth: 8
+  forwardRange: 5
+  playerTransform: {fileID: 1374445919}
 --- !u!4 &126994665
 Transform:
   m_ObjectHideFlags: 0

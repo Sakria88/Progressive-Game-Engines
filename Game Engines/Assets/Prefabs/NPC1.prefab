@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType: 1
   moveSpeed: 15
-  moveRange: 20
+  moveRange: 5
   waitTime: 0
 --- !u!65 &2890589000721245004
 BoxCollider:

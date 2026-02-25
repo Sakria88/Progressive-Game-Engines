@@ -16,7 +16,11 @@ public class CollectiblesManager : MonoBehaviour
     // How many to spawn
     public int totalCollectibles = 10;
     public float spawnZOffset = 50f;
-    
+
+    public int totalBoosters = 25;      // Number of boosters to pre-spawn
+    public float boosterSpawnRangeX = 10f; // Same as coins, stay within lane width
+    public float boosterDistance = 200f;   // Space between each booster
+
     public float spawnRangeX = 10f; // Range for random spawning
     public float distanceBetweenCoins = 70f;
     private float lastBoosterZ;// Distance between each coin
@@ -36,8 +40,9 @@ public class CollectiblesManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       SpawnInitialCoins();
-       AddSpeedBooster();
+        SpawnInitialBoosters();
+        SpawnInitialCoins();
+        AddSpeedBooster();
 
     }
    
@@ -92,6 +97,29 @@ public class CollectiblesManager : MonoBehaviour
             return false;
         }
     }
+
+    private void SpawnInitialBoosters()
+    {
+        if (SpeedBooster == null)
+        {
+            Debug.LogError("SpeedBooster prefab not set!");
+            return;
+        }
+
+        for (int i = 0; i < totalBoosters; i++)
+        {
+            // Spread out along Z-axis, far ahead of the player
+            float spawnZ = playerTransform.position.z + spawnZOffset + (i * boosterDistance);
+
+            // Random X position within lanes
+            float spawnX = UnityEngine.Random.Range(-boosterSpawnRangeX, boosterSpawnRangeX);
+
+            Vector3 spawnPos = new Vector3(spawnX, 3f, spawnZ);
+            GameObject booster = Instantiate(SpeedBooster, spawnPos, Quaternion.identity);
+            booster.tag = "SpeedBooster";
+        }
+    }
+
     public void AddSpeedBooster()
     {
         if (coinCount % 5 == 0)

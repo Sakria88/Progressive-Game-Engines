@@ -9,6 +9,7 @@ TagManager:
   - SpeedBooster
   - Obstacle
   - Ground
+  - NPC
   layers:
   - Default
   - TransparentFX

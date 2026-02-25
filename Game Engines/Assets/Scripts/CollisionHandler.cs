@@ -88,6 +88,12 @@ public class CollisionHandler : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("NPC"))
+        {
+            Debug.Log("Player collided with NPC!");
+            StartCoroutine(RespawnRoutine());
+        }
     }
 
     void RespawnPlayer()

@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Callbacks;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private bool isGrounded;
+    
     private float jumpForce = 7f;
     private float forwardSpeed = 20f;
     public float groundCheckDistance = 0.2f;
@@ -36,6 +35,7 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
+        
     // Read input here (reliable)
         xInput = Input.GetAxisRaw("Horizontal");  // A/D, Left/Right
 
@@ -43,14 +43,18 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Space pressed!");
             jumpQueued = true;
+            
         }
+       
 
     }
    private void FixedUpdate()
     {
+        CheckGround();
         Move();
         HandleJump();
-        CheckGround();
+       
+        
         
     }
 
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour
         jumpQueued = false;
     }
 
+   
     public void SetGrounded(bool grounded)
     {
         isGrounded = grounded;

@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.5589052
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60,6 +60,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8247799044486404512, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8247799044486404512, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6084807
+      objectReference: {fileID: 0}
+    - target: {fileID: -8247799044486404512, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -3316209038747775882, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -71,6 +83,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
       propertyPath: m_TagString
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902008074560218088, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.40547597
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902008074560218088, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00000006042154
       objectReference: {fileID: 0}
     - target: {fileID: 4179758050147721217, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -85,7 +105,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 75d1ddaa438934248aa4190a9b15dc04, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -3957782524123411102, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+    - {fileID: -7235015103121818086, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
+    - {fileID: 2150071718403716441, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b2bf1ea207db72141b268c5e55152ff2, type: 3}
@@ -113,8 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementType: 0
-  moveSpeed: 15
-  moveRange: 5
+  moveSpeed: 8
+  moveRange: 6
   waitTime: 0
 --- !u!65 &3559131141029087891
 BoxCollider:

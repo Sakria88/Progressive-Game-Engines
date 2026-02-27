@@ -10,6 +10,9 @@ public class NPCManager : MonoBehaviour
     [Header("Side-to-Side NPCs")]
     public List<GameObject> NPCSide;
 
+    [Header("Floor Detection")]
+    public GameObject floorObject;
+
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float moveRange = 5f;
@@ -23,10 +26,11 @@ public class NPCManager : MonoBehaviour
 
 
     public Transform playerTransform;
-
+    public float npcYOffset = 0f;
 
     private void Start()
     {
+        
         if (playerTransform == null)
         {
             Debug.LogError("Player Transform not assigned in NPCManager!");
@@ -47,42 +51,69 @@ public class NPCManager : MonoBehaviour
         }
     }
 
+    [Header("Floor Detection")]
+// This creates a list in the Inspector where you can set the size to 2 
+// and drag both ground objects in.
+    public GameObject[] floorObjects; 
+
     private void SpawnNPCs()
     {
-        float startZ = playerTransform.position.z + 50f; // spawn ahead of player
+        float spawnDistanceAhead = 50f;
+        float startZ = playerTransform.position.z + spawnDistanceAhead;
+
+        if (floorObjects == null || floorObjects.Length == 0)
+        {
+            Debug.LogError("No floors assigned to NPCManager!");
+            return;
+        }
 
         // --- Forward-Backward NPCs ---
         for (int i = 0; i < numNPCs; i++)
         {
-            // Random X position within lane width so NPC stays on floor
-            float xPos = Random.Range(-laneWidth, laneWidth);
-            Vector3 pos = new Vector3(xPos, 0, startZ + i * zSpacing);
+            // 1. Pick a random floor from your list (Floor 1 or Floor 2)
+            GameObject selectedFloor = floorObjects[Random.Range(0, floorObjects.Length)];
+            
+            float xPos = selectedFloor.transform.position.x;
+            float surfaceY = 0f;
 
-            GameObject prefab = NPCForward[i % NPCForward.Count];
+            // 2. Calculate the bounds of that specific floor
+            Renderer floorRenderer = selectedFloor.GetComponent<Renderer>();
+            if (floorRenderer != null)
+            {
+                float halfWidth = (floorRenderer.bounds.size.x / 2) - 1.0f;
+                
+                
+                // Randomize X relative to the center of the chosen floor
+                xPos = Random.Range(floorRenderer.bounds.center.x - halfWidth, floorRenderer.bounds.center.x + halfWidth);
+            surfaceY = floorRenderer.bounds.max.y;
+            }
+            float finalZ = startZ + (i * zSpacing);
+            Vector3 pos = new Vector3(xPos, surfaceY + npcYOffset, startZ + i * zSpacing);
 
-            // Instantiate with prefab's original rotation and scale
-            GameObject npc = Instantiate(prefab, pos, prefab.transform.rotation);
-            npc.transform.localScale = prefab.transform.localScale;
-
-            npc.tag = "NPC";
-            AddNPCComponent(npc, NPC.NPCMovementType.ForwardBackward);
-        }
-
-        // --- Side-to-Side NPCs ---
-        for (int i = 0; i < numNPCs; i++)
-        {
-            // Random X position within lane width
-            float xPos = Random.Range(-laneWidth, laneWidth);
-            Vector3 pos = new Vector3(xPos, 0, startZ + i * zSpacing + zSpacing / 2f); // staggered
-
-            GameObject prefab = NPCSide[i % NPCSide.Count];
-
-            // Instantiate with prefab's original rotation and scale
-            GameObject npc = Instantiate(prefab, pos, prefab.transform.rotation);
-            npc.transform.localScale = prefab.transform.localScale;
-
-            npc.tag = "NPC";
-            AddNPCComponent(npc, NPC.NPCMovementType.SideToSide);
+            if (i % 2 == 0) // Even numbers spawn Forward-Backward
+           {
+            if (NPCForward.Count > 0)
+            {
+                GameObject prefab = NPCForward[i % NPCForward.Count];
+                GameObject npc = Instantiate(prefab, pos, prefab.transform.rotation);
+                npc.transform.localScale = prefab.transform.localScale;
+                npc.tag = "NPC";
+                AddNPCComponent(npc, NPC.NPCMovementType.ForwardBackward);
+                Debug.Log($"Spawned Forward NPC {i} at Z: {pos.z}");
+            }
+           }
+           else // Odd numbers spawn Side-to-Side
+            {
+                if (NPCSide.Count > 0)
+                {
+                    GameObject prefab = NPCSide[i % NPCSide.Count];
+                    GameObject npc = Instantiate(prefab, pos, prefab.transform.rotation);
+                    npc.transform.localScale = prefab.transform.localScale;
+                    npc.tag = "NPC";
+                    AddNPCComponent(npc, NPC.NPCMovementType.SideToSide);
+                    Debug.Log($"Spawned Side NPC {i} at Z: {pos.z}");
+                }
+            }
         }
     }
 
@@ -102,4 +133,15 @@ public class NPCManager : MonoBehaviour
         npcScript.moveRange = moveRange;
         npcScript.waitTime = waitTime;
     }
+
+    private void OnDrawGizmosSelected()
+   {
+    // This draws a red line in your Scene view showing where the "Spawn Line" is
+    Gizmos.color = Color.red;
+    float rangeX = 100f; 
+    float floorY = 3f;
+    Vector3 start = new Vector3(-rangeX, floorY, transform.position.z);
+    Vector3 end = new Vector3(rangeX, floorY, transform.position.z);
+    Gizmos.DrawLine(start, end);
+  }
 }

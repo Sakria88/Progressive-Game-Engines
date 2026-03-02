@@ -9,22 +9,17 @@ public class ScoreUI : MonoBehaviour
 
     private ScoreSystem score;
 
-    private bool StartInit()
+    public void Initialise(CollectiblesManager managerRef)
     {
-        if (manager == null) manager = FindFirstObjectByType<CollectiblesManager>();
-        if (manager == null || scoreText == null) return false;
+        if (managerRef == null || scoreText == null)
+            return;
 
-        score = manager.GetScoreSystem();
-        if (score == null) return false;
+        score = managerRef.GetScoreSystem();
+        if (score == null)
+            return;
 
         score.ScoreChanged += OnScoreChanged;
         OnScoreChanged(score.Score);
-        return true;
-    }
-
-    private bool Start()
-    {
-        return StartInit();
     }
 
     private void OnDestroy()

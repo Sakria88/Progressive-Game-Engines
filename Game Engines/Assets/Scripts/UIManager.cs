@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private ScoreUI scoreUI;
+    [SerializeField] private CollectiblesManager collectiblesManager;
     [Header("References")]
     [SerializeField] private PlayerCharacter player;
 
@@ -21,6 +23,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        if (scoreUI != null && collectiblesManager != null)
+        {
+            scoreUI.Initialise(collectiblesManager);
+        }
         RefreshAllUI();
     }
 
@@ -52,7 +58,12 @@ public class UIManager : MonoBehaviour
 
         // Replace this once you add a Score variable to PlayerCharacter.
         // scoreText.text = "Score: " + player.TotalScore.ToString();
-        scoreText.text = "Score: 0";
+        // scoreText.text = "Score: 0";
+        var scoreSystem = collectiblesManager.GetScoreSystem();
+        if (scoreSystem != null)
+        {
+            scoreText.text = "Score: " + scoreSystem.Score;
+        }
     }
 
     private void UpdateSpeedUI()

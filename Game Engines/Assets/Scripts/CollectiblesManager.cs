@@ -5,6 +5,7 @@
 //collected. The manager also ensures that new collectibles are 
 //spawned ahead of the player as they progress through the level.
 using UnityEngine;
+using DLLGameCollectables;
 
 public class CollectiblesManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class CollectiblesManager : MonoBehaviour
     public static CollectiblesManager Instance { get; private set; }
 
     [Header("Coins")]
-    [SerializeField] private int totalCollectibles = 10;
+    [SerializeField] private int totalCollectibles = 400;
     [SerializeField] private float spawnZOffset = 50f;
     [SerializeField] private float spawnRangeX = 10f;
     [SerializeField] private float distanceBetweenCoins = 70f;
@@ -34,9 +35,20 @@ public class CollectiblesManager : MonoBehaviour
     [SerializeField] private float shieldSpawnRangeX = 10f;
     [SerializeField] private float shieldDistance = 300f;
 
+    [Header("Scoring")]
+    [Tooltip("Every time total coins reaches a multiple of this, award points.")]
+    [SerializeField] private int coinsPerScoreStep = 20;
+
+    [Tooltip("Points to award per coin milestone.")]
+    [SerializeField] private int pointsPerScoreStep = 100;
+
 
     private int coinCount;
+    // DLL score system owned by the manager so ScoreUI can subscribe.
+    private readonly ScoreSystem scoreSystem = new ScoreSystem();
 
+    // Tracks the next milestone at which we should award points (20, 40, 60, ...)
+    private int nextCoinMilestone;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -45,6 +57,9 @@ public class CollectiblesManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        // Initialise scoring state
+        scoreSystem.Reset();
+        nextCoinMilestone = Mathf.Max(1, coinsPerScoreStep);
     }
 
     private void Start()
@@ -52,6 +67,10 @@ public class CollectiblesManager : MonoBehaviour
         SpawnInitialBoosters();
         SpawnInitialShields();
         SpawnInitialCoins();
+    }
+    public ScoreSystem GetScoreSystem()
+    {
+        return scoreSystem;
     }
 
     private bool SpawnInitialCoins()
@@ -75,8 +94,21 @@ public class CollectiblesManager : MonoBehaviour
 
     public bool AddCoins(int amount)
     {
+        
+        if (amount <= 0) return false;
+
         coinCount += amount;
         Debug.Log("Total Coins: " + coinCount);
+
+        // Award score: +100 every time the player reaches 20 coins (and again at 40, 60, ...)
+        if (coinsPerScoreStep > 0 && pointsPerScoreStep > 0)
+        {
+            while (coinCount >= nextCoinMilestone)
+            {
+                scoreSystem.AddPoints(pointsPerScoreStep);
+                nextCoinMilestone += coinsPerScoreStep;
+            }
+        }
 
         if (playerTransform != null)
         {

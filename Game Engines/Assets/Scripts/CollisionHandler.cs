@@ -1,136 +1,99 @@
+// This script handles collisions for the player character. 
+//It manages interactions with enemies, NPCs, and obstacles, 
+//including respawning the player at the start position when necessary. 
+//It also integrates with the player's backpack system and resets relevant 
+//game elements upon respawn. 
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
-
-
 
 public class CollisionHandler : MonoBehaviour
 {
     public BackPack myBackpack;
 
     private Vector3 spawnPlayer;
-    private PlayerController player;
-    private Rigidbody rb;
     public InfiniteFloor[] floors;
-    private bool hitObstacle = false;
-    public EnemyController enemyController;
 
-    void Start()
+    [SerializeField] private EnemyCharacter enemyCharacter;
+
+    private bool hitObstacle;
+
+    private void Start()
     {
-        player = GetComponent<PlayerController>();
-        spawnPlayer = transform.position;   
+        spawnPlayer = transform.position;
 
         myBackpack = new BackPack(100);
         myBackpack.AddToBackpack();
+
         StartCoroutine(CheckObstacleTimer());
     }
 
-    IEnumerator CheckObstacleTimer()
+    private IEnumerator CheckObstacleTimer()
     {
         yield return new WaitForSeconds(5f);
-
-        if (!hitObstacle)
-            Debug.Log("5 seconds passed and no obstacle was hit!");
-    }
-   
-    private IEnumerator RespawnRoutine()
-    {
-        yield return null; // wait 1 frame
-        RespawnPlayer();
+        if (!hitObstacle) Debug.Log("5 seconds passed and no obstacle was hit!");
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        // Grounded for jump (only if you tag your floor "Ground")
-        
+        PlayerCharacter player = GetComponent<PlayerCharacter>();
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        // Enemy (Character-derived) - still respawns (you did NOT ask to block this)
+        if (collision.gameObject.GetComponent<EnemyCharacter>() != null)
         {
-            Debug.Log("Player collided with an enemy!");
             StartCoroutine(RespawnRoutine());
+            return;
         }
 
+        // NPC (Character-derived) - block respawn if shield active
+        if (collision.gameObject.GetComponent<NPCCharacter>() != null)
+        {
+            if (player != null && player.IsShieldActive) return;
+            StartCoroutine(RespawnRoutine());
+            return;
+        }
+
+        // Obstacle - block respawn if shield active
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Player hit an obstacle!");
+            if (player != null && player.IsShieldActive) return;
+
             hitObstacle = true;
             RespawnPlayer();
         }
     }
 
-    
-
-   
-
-    void OnTriggerEnter(Collider other)
+    private IEnumerator RespawnRoutine()
     {
-        Debug.Log("Touched something named: " + other.name + " with Tag: " + other.tag);
-
-        if (other.CompareTag("Coin"))
-        {
-            Debug.Log("Player picked up a coin!");
-            myBackpack.AddToBackpack();
-
-            if (CollectiblesManager.Instance != null)
-                CollectiblesManager.Instance.AddCoins(1);
-
-            Destroy(other.gameObject);
-        }
-
-        if (other.CompareTag("SpeedBooster"))
-        {
-            Debug.Log("Speed boost collected!");
-            PlayerController pc = GetComponent<PlayerController>();
-            if (pc != null)
-            {
-                pc.ActivateSpeedBoost(2f, 5f); // x2 speed for 5 seconds
-            }
-            Destroy(other.gameObject);
-        }
-
-        if (other.CompareTag("NPC1") || other.CompareTag("NPC2"))
-        {
-            Debug.Log("Player collided with NPC!");
-            StartCoroutine(RespawnRoutine());
-        }
+        yield return null;
+        RespawnPlayer();
     }
 
-    void RespawnPlayer()
+    private bool RespawnPlayer()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-
-        if (rb != null && !rb.isKinematic)
+        PlayerCharacter player = GetComponent<PlayerCharacter>();
+        if (player != null)
         {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            rb.position = spawnPlayer;      // 
-            rb.rotation = Quaternion.identity; // optional, only if you want reset rotation
+            player.TeleportTo(spawnPlayer, Quaternion.identity);
         }
         else
         {
             transform.position = spawnPlayer;
+            Physics.SyncTransforms();
         }
 
-        Physics.SyncTransforms();
-        Debug.Log("Teleported to: " + spawnPlayer);
+        if (enemyCharacter != null)
+        {
+            enemyCharacter.ResetEnemy();
+        }
 
-        if (enemyController != null)
-        {
-            enemyController.ResetEnemy();
-        }
-        else
-        {
-            Debug.LogWarning("EnemyController reference not set!");
-        }
         if (floors != null)
         {
-            foreach (var floor in floors)
+            foreach (InfiniteFloor f in floors)
             {
-                floor.ResetFloor();
+                if (f != null) f.ResetFloor();
             }
         }
-    }
 
+        return true;
+    }
 }

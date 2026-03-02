@@ -4,23 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Coin
-  - SpeedBooster
-  - Obstacle
   - Ground
-  - NPC
-  - NPC1
+  - Obstacle
   - NPC2
+  - Coin
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ground
   - Water
   - UI
   - 
-  - Ground
+  - 
   - 
   - 
   - 

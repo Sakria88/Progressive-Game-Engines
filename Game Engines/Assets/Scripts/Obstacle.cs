@@ -1,8 +1,8 @@
+// This script defines an obstacle in the game that the player must avoid.
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 

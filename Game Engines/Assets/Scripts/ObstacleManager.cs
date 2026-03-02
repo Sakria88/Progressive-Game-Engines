@@ -1,3 +1,5 @@
+// This script manages the spawning of 
+//obstacles (shelves and computer desks) on the floor.
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +10,9 @@ public class ObstacleManager : MonoBehaviour
     public Transform player;
     public static ObstacleManager Instance;
     public GameObject shelfPrefab;
+    public GameObject CompDeskPrefab;
     public int shelfLimit = 40;
+    public int compdeskLimit = 40;
     
     
     public float spawnDistanceAhead = 150f; // How far ahead to spawn
@@ -30,6 +34,7 @@ public class ObstacleManager : MonoBehaviour
     {
       
        SpawnInitialShelf();
+    //    SpawnInitialCompDesk();
 
     }
 
@@ -43,6 +48,17 @@ public class ObstacleManager : MonoBehaviour
             SpawnNewObstacle(zPos);
         }
     }
+
+    // void SpawnInitialCompDesk()
+    // {
+    //     // Start spawning boosters 20 units ahead of the player
+    //     for (int i = 0; i < compdeskLimit; i++)
+    //     {
+    //         float zPos = player.position.z + spawnDistanceAhead + (i * distanceBetweenObstacles);
+    //         SpawnNewObstacle(zPos);
+    //     }
+    // }
+    
 
     public void SpawnNewObstacle(float zPosition)
     {

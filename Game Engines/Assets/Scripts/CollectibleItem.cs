@@ -1,6 +1,11 @@
+// This script defines a collectible item that can be picked up 
+//by the player. It includes a floating and rotating effect to 
+//make the item visually appealing. The typeOfItem array can 
+//be used to identify the specific type of collectible, which 
+//can be useful for inventory management or applying different 
+//effects when collected.
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 public class CollectibleItem : MonoBehaviour
 {

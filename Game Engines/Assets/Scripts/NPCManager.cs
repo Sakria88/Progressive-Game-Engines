@@ -1,5 +1,9 @@
+// This script manages the spawning of NPC2 (forward-backward movement) 
+//on the floor.
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 // This manager handles the spawning of NPC2 (forward-backward movement) on the floor.
 public class NPCManager : MonoBehaviour
 {
@@ -28,11 +32,10 @@ public class NPCManager : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool verboseLogs = true;
-    [SerializeField] private bool applyTagToChildren = false;
 
     private Transform npc2Container;
-    private const string TagNPC2 = "NPC2";
-    private int spawnedNPC2Count = 0;
+
+    private int spawnedNPC2Count;
 
     private void Start()
     {
@@ -55,8 +58,6 @@ public class NPCManager : MonoBehaviour
         }
 
         EnsureContainer();
-        EnsureTagExists(TagNPC2);
-
         SpawnNPC2();
 
         if (verboseLogs)
@@ -65,55 +66,25 @@ public class NPCManager : MonoBehaviour
         }
     }
 
-    private void EnsureContainer()
+    private bool EnsureContainer()
     {
         GameObject c2 = GameObject.Find("NPC2_Container");
         if (c2 == null) c2 = new GameObject("NPC2_Container");
         npc2Container = c2.transform;
+        return true;
     }
 
-    private void EnsureTagExists(string tagName)
-    {
-        if (!TagExists(tagName))
-        {
-            Debug.LogWarning($"[NPCManager:NPC2] Tag '{tagName}' does not exist. Create it in Unity Tags.");
-        }
-    }
-
-    private bool TagExists(string tagName)
-    {
-        try
-        {
-            GameObject temp = new GameObject("TagTest");
-            temp.tag = tagName;
-            Destroy(temp);
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
-    private void SpawnNPC2()
+    private bool SpawnNPC2()
     {
         int spawned = 0;
 
         for (int i = 0; i < countPerType; i++)
         {
             GameObject selectedFloor = floorObjects[Random.Range(0, floorObjects.Length)];
-            if (selectedFloor == null)
-            {
-                Debug.LogError("[NPCManager:NPC2] A floorObjects entry is NULL (Missing reference).");
-                continue;
-            }
+            if (selectedFloor == null) continue;
 
             Renderer floorRenderer = selectedFloor.GetComponentInChildren<Renderer>();
-            if (floorRenderer == null)
-            {
-                Debug.LogError($"[NPCManager:NPC2] No Renderer found on '{selectedFloor.name}' or its children.");
-                continue;
-            }
+            if (floorRenderer == null) continue;
 
             float centerX = floorRenderer.bounds.center.x;
             float xPos = Random.Range(centerX - npc2LaneWidth, centerX + npc2LaneWidth);
@@ -123,54 +94,33 @@ public class NPCManager : MonoBehaviour
             Vector3 spawnPos = new Vector3(xPos, surfaceY + npc2YOffset, zPos);
 
             GameObject prefab = npcForwardPrefabs[i % npcForwardPrefabs.Count];
-            if (prefab == null)
-            {
-                Debug.LogError("[NPCManager:NPC2] Prefab is missing in npcForwardPrefabs list.");
-                continue;
-            }
+            if (prefab == null) continue;
 
             GameObject npc = Instantiate(prefab, spawnPos, prefab.transform.rotation, npc2Container);
             npc.transform.localScale = prefab.transform.localScale;
 
-            if (TagExists(TagNPC2))
-            {
-                npc.tag = TagNPC2;
-
-                if (applyTagToChildren)
-                {
-                    Transform[] children = npc.GetComponentsInChildren<Transform>(true);
-                    for (int c = 0; c < children.Length; c++)
-                    {
-                        children[c].gameObject.tag = TagNPC2;
-                    }
-                }
-            }
-
-            AddOrConfigureNPCComponent(npc, NPC.NPCMovementType.ForwardBackward);
+            ConfigureNPC(npc, NPCCharacter.NPCMovementType.ForwardBackward);
             spawned++;
-
-            if (verboseLogs && i == 0)
-            {
-                Debug.Log($"[NPCManager:NPC2] Example spawn: '{npc.name}' at {spawnPos} on floor '{selectedFloor.name}'");
-            }
         }
 
         spawnedNPC2Count = spawned;
+        return true;
     }
 
-    private void AddOrConfigureNPCComponent(GameObject npc, NPC.NPCMovementType type)
+    private bool ConfigureNPC(GameObject npc, NPCCharacter.NPCMovementType type)
     {
-        if (npc == null) return;
+        if (npc == null) return false;
 
-        NPC npcScript = npc.GetComponent<NPC>();
+        NPCCharacter npcScript = npc.GetComponent<NPCCharacter>();
         if (npcScript == null)
         {
-            npcScript = npc.AddComponent<NPC>();
+            npcScript = npc.AddComponent<NPCCharacter>();
         }
 
         npcScript.movementType = type;
         npcScript.moveSpeed = moveSpeed;
         npcScript.moveRange = moveRange;
         npcScript.waitTime = waitTime;
+        return true;
     }
 }

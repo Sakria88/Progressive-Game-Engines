@@ -1,3 +1,6 @@
+// This script manages the infinite floor pieces in the game.
+// Each floor piece will move ahead of the player when they 
+//collide with it, creating the illusion of an endless path.
 using System;
 using UnityEngine;
 
@@ -28,12 +31,4 @@ public class InfiniteFloor : MonoBehaviour
     }
 
 }
-    
-    
-    
-
-
-
-
-
     

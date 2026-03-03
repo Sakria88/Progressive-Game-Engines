@@ -12,83 +12,171 @@ using UnityEngine;
 
 namespace DLLEnemy
 {
-    public enum EnemyKind
+    public enum NpcMovementType
     {
-        Enemy, // main chaser (class name in Unity is Enemy)
-        NPC_SideToSide,
-        NPC_ForwardBackward
+        SideToSide = 0,
+        ForwardBackward = 1
     }
 
-    public readonly struct Float3
+    public struct FloorInfo
     {
-        public readonly float X;
-        public readonly float Y;
-        public readonly float Z;
+        public float CenterX;
+        public float MinX;
+        public float MaxX;
+        public float SurfaceY; // bounds.max.y
 
-        public Float3(float x, float y, float z)
+        public FloorInfo(float centerX, float minX, float maxX, float surfaceY)
+        {
+            CenterX = centerX;
+            MinX = minX;
+            MaxX = maxX;
+            SurfaceY = surfaceY;
+        }
+    }
+    public struct SpawnVec3
+    {
+        public float X;
+        public float Y;
+        public float Z;
+
+        public SpawnVec3(float x, float y, float z)
         {
             X = x; Y = y; Z = z;
         }
     }
-
-    public readonly struct SpawnRequest
+    public struct NpcSpawnRequest
     {
-        public readonly EnemyKind Kind;
-        public readonly Float3 Position;
+        public int PrefabIndex;   //prefab Unity should pick
+        public SpawnVec3 Position;   // spawn position
+        public NpcMovementType MovementType; // SideToSide / ForwardBackward
 
-        // Optional per-spawn parameters (Unity behaviour can use these)
-        public readonly float Speed;
-        public readonly float DelaySeconds;
+        public float MoveSpeed; // maps to npcScript.moveSpeed
+        public float MoveRange;   // maps to npcScript.moveRange
+        public float WaitTime;    // maps to npcScript.waitTime
 
-        public SpawnRequest(EnemyKind kind, Float3 position, float speed, float delaySeconds)
+        // For SideToSide clamping:
+        public float ClampMinX;  // floor bounds min.x
+        public float ClampMaxX;   // floor bounds max.x
+
+        public NpcSpawnRequest(
+            int prefabIndex,
+            SpawnVec3 position,
+            NpcMovementType movementType,
+            float moveSpeed,
+            float moveRange,
+            float waitTime,
+            float clampMinX,
+            float clampMaxX)
         {
-            Kind = kind;
+            PrefabIndex = prefabIndex;
             Position = position;
-            Speed = speed;
-            DelaySeconds = delaySeconds;
+            MovementType = movementType;
+            MoveSpeed = moveSpeed;
+            MoveRange = moveRange;
+            WaitTime = waitTime;
+            ClampMinX = clampMinX;
+            ClampMaxX = clampMaxX;
         }
     }
-    public sealed class EnemySpawnConfig
+    public struct EnemySpawnRequest
     {
-        // Floor / lane space
-        public float FloorCenterX { get; set; }
-        public float LaneWidth { get; set; }
-        public float EdgePadding { get; set; }
+        public SpawnVec3 Position;
 
-        // Spawn distances
-        public float SpawnZOffset { get; set; }          // NPC spawns ahead of player
-        public float EnemyRespawnBehind { get; set; }    // enemy respawns behind player
-
-        // Timing / caps
-        public float NpcSpawnIntervalSeconds { get; set; }
-        public int MaxNpcsAlive { get; set; }
-
-        // Speeds
-        public float EnemyChaseSpeed { get; set; }
-        public float NpcSideToSideSpeed { get; set; }
-        public float NpcForwardBackwardSpeed { get; set; }
-
-        // Enemy delay requirement
-        public float EnemyWaitSeconds { get; set; }
-
-        public EnemySpawnConfig()
+        public EnemySpawnRequest(SpawnVec3 position)
         {
-            // sensible defaults
-            FloorCenterX = 0f;
-            LaneWidth = 11f;
-            EdgePadding = 0.75f;
+            Position = position;
+        }
+    }
 
-            SpawnZOffset = 60f;
-            EnemyRespawnBehind = 25f;
+    public sealed class EnemyNpcSpawner
+    {
+        private readonly System.Random _rng;
 
-            NpcSpawnIntervalSeconds = 2.0f;
-            MaxNpcsAlive = 8;
+        public EnemyNpcSpawner(int seed)
+        {
+            _rng = new System.Random(seed);
+        }
 
-            EnemyChaseSpeed = 18f;
-            NpcSideToSideSpeed = 4f;
-            NpcForwardBackwardSpeed = 3.5f;
+        public EnemySpawnRequest CreateEnemySpawnBehindPlayer(
+            float playerX,
+            float playerY,
+            float playerZ,
+            float respawnBehindZ)
+        {
+            SpawnVec3 pos = new SpawnVec3(playerX, playerY, playerZ - respawnBehindZ);
+            return new EnemySpawnRequest(pos);
+        }
 
-            EnemyWaitSeconds = 5.0f;
+        public List<NpcSpawnRequest> CreateNpcSpawns(
+            List<FloorInfo> floors,
+            int count,
+            int prefabCount,
+            float playerZ,
+            float spawnDistanceAhead,
+            float zSpacing,
+            float npcLaneWidth,
+            float npcYOffset,
+            float moveSpeed,
+            float moveRange,
+            float waitTime,
+            bool alternateTypes)
+        {
+            List<NpcSpawnRequest> result = new List<NpcSpawnRequest>(Math.Max(0, count));
+
+            if (floors == null || floors.Count == 0) return result;
+            if (count <= 0) return result;
+            if (prefabCount <= 0) return result;
+
+            for (int i = 0; i < count; i++)
+            {
+                FloorInfo floor = floors[_rng.Next(0, floors.Count)];
+
+                // X within center +/- npcLaneWidth (same as your NPCManager)
+                float x = NextRange(floor.CenterX - npcLaneWidth, floor.CenterX + npcLaneWidth);
+
+                float y = floor.SurfaceY + npcYOffset;
+                float z = playerZ + spawnDistanceAhead + (i * zSpacing);
+
+                int prefabIndex = i % prefabCount;
+
+                NpcMovementType type;
+                if (alternateTypes)
+                {
+                    type = (i % 2 == 0) ? NpcMovementType.SideToSide : NpcMovementType.ForwardBackward;
+                }
+                else
+                {
+                    type = (_rng.Next(0, 2) == 0) ? NpcMovementType.SideToSide : NpcMovementType.ForwardBackward;
+                }
+
+                NpcSpawnRequest req = new NpcSpawnRequest(
+                    prefabIndex,
+                    new SpawnVec3(x, y, z),
+                    type,
+                    moveSpeed,
+                    moveRange,
+                    waitTime,
+                    floor.MinX,
+                    floor.MaxX
+                );
+
+                result.Add(req);
+            }
+
+            return result;
+        }
+
+        private float NextRange(float min, float max)
+        {
+            if (max < min)
+            {
+                float t = min;
+                min = max;
+                max = t;
+            }
+
+            double r = _rng.NextDouble(); // [0,1)
+            return (float)(min + (max - min) * r);
         }
     }
 }

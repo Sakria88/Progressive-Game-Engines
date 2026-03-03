@@ -2603,6 +2603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1077569858}
   - {fileID: 1909216935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2706,11 +2707,11 @@ Transform:
   m_GameObject: {fileID: 1077569857}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.51843303}
-  m_LocalScale: {x: 1.6377847, y: 112.84929, z: 0.040838495}
+  m_LocalPosition: {x: -47.805668, y: -31.157003, z: 427.14706}
+  m_LocalScale: {x: 94.58525, y: 38.046993, z: 8.767821}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1909216935}
+  m_Father: {fileID: 1037292626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1077569860
 BoxCollider:
@@ -3710,6 +3711,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 310432126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1812170345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1812170347}
+  - component: {fileID: 1812170346}
+  m_Layer: 0
+  m_Name: DLLEnemy_Bridge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1812170346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812170345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af2888f37df93c429a800fa9a6f0ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3676644954486630567, guid: 4a0f23897b0a9694c870dfbe8086d9e5, type: 3}
+  enemy: {fileID: 8397606699108202324, guid: 02f0442d704156241ba0b06af076b7ca, type: 3}
+  respawnBehindZ: 25
+  npcPrefabs:
+  - {fileID: 244933528481670182, guid: d1536677739a85a49b2676a8af97fd2c, type: 3}
+  - {fileID: 6856505423123892647, guid: 58690b617a2daaa4e8c93bdecc83f14a, type: 3}
+  npcContainer: {fileID: 126994665}
+  floorObjects:
+  - {fileID: 58489778}
+  - {fileID: 1077569857}
+  countPerType: 6
+  spawnDistanceAhead: 50
+  zSpacing: 12
+  npcLaneWidth: 3
+  npcYOffset: 0.05
+  moveSpeed: 3
+  moveRange: 2
+  waitTime: 0.5
+--- !u!4 &1812170347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812170345}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.19400525, y: 0.7637739, z: -12.610458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1883435735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,8 +3864,7 @@ Transform:
   m_LocalPosition: {x: -47.805668, y: -31.157003, z: 315.84207}
   m_LocalScale: {x: 57.751945, y: 0.33714873, z: 214.69502}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1077569858}
+  m_Children: []
   m_Father: {fileID: 1037292626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1909216938
@@ -4622,6 +4684,7 @@ SceneRoots:
   - {fileID: 1530483259}
   - {fileID: 744506956}
   - {fileID: 126994665}
+  - {fileID: 1812170347}
   - {fileID: 290712451}
   - {fileID: 310432126}
   - {fileID: 1037292626}

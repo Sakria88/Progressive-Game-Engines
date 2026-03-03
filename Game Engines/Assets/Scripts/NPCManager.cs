@@ -4,13 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// This manager handles the spawning of NPC2 (forward-backward movement) on the floor.
+// This manager now handles Side-to-Side movement for NPCs.
+//and should for the future handle forward and backward.
 public class NPCManager : MonoBehaviour
 {
-    [Header("Forward-Backward NPC Prefabs (NPC2)")]
-    [SerializeField] private List<GameObject> npcForwardPrefabs = new List<GameObject>();
+    [Header("Lane Settings (NPC2 and NPC1)")]
+    [SerializeField] private int laneCount = 3;
 
-    [Header("Floor Detection (Objects that represent your ground)")]
+    [Header("NPC Prefabs")]
+    [SerializeField] private List<GameObject> npcPrefabs = new List<GameObject>();
+
+    [Header("Floor Detection")]
     [SerializeField] private GameObject[] floorObjects;
 
     [Header("Player Reference")]
@@ -21,11 +25,11 @@ public class NPCManager : MonoBehaviour
     [SerializeField] private float spawnDistanceAhead = 50f;
     [SerializeField] private float zSpacing = 160f;
 
-    [Header("NPC2 Position Settings")]
-    [SerializeField] private float npc2LaneWidth = 8f;
-    [SerializeField] private float npc2YOffset = 1.2f;
+    [Header("NPC Position Settings")]
+    [SerializeField] private float npcLaneWidth = 8f;
+    [SerializeField] private float npcYOffset = 1.2f;
 
-    [Header("Movement Settings (applied to spawned NPC2)")]
+    [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float moveRange = 7f;
     [SerializeField] private float waitTime = 0f;
@@ -33,48 +37,25 @@ public class NPCManager : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool verboseLogs = true;
 
-    private Transform npc2Container;
-
-    private int spawnedNPC2Count;
+    private Transform npcContainer;
+    private int spawnedNPCCount;
 
     private void Start()
     {
-        if (playerTransform == null)
-        {
-            Debug.LogError("[NPCManager:NPC2] Player Transform not assigned.");
-            return;
-        }
-
-        if (floorObjects == null || floorObjects.Length == 0)
-        {
-            Debug.LogError("[NPCManager:NPC2] floorObjects is empty. Assign your Ground objects in the Inspector.");
-            return;
-        }
-
-        if (npcForwardPrefabs == null || npcForwardPrefabs.Count == 0)
-        {
-            Debug.LogWarning("[NPCManager:NPC2] npcForwardPrefabs is empty (NPC2 will not spawn).");
-            return;
-        }
+        if (playerTransform == null || floorObjects == null || floorObjects.Length == 0) return;
 
         EnsureContainer();
-        SpawnNPC2();
-
-        if (verboseLogs)
-        {
-            Debug.Log($"[NPCManager:NPC2] Spawn complete. NPC2 spawned: {spawnedNPC2Count}");
-        }
+        SpawnNPCs();
     }
 
-    private bool EnsureContainer()
+    private void EnsureContainer()
     {
-        GameObject c2 = GameObject.Find("NPC2_Container");
-        if (c2 == null) c2 = new GameObject("NPC2_Container");
-        npc2Container = c2.transform;
-        return true;
+        GameObject container = GameObject.Find("NPC_SideToSide_Container");
+        if (container == null) container = new GameObject("NPC_SideToSide_Container");
+        npcContainer = container.transform;
     }
 
-    private bool SpawnNPC2()
+    private void SpawnNPCs()
     {
         int spawned = 0;
 
@@ -86,41 +67,42 @@ public class NPCManager : MonoBehaviour
             Renderer floorRenderer = selectedFloor.GetComponentInChildren<Renderer>();
             if (floorRenderer == null) continue;
 
+            // Calculate floor boundaries for clamping
             float centerX = floorRenderer.bounds.center.x;
-            float xPos = Random.Range(centerX - npc2LaneWidth, centerX + npc2LaneWidth);
+            float minX = floorRenderer.bounds.min.x;
+            float maxX = floorRenderer.bounds.max.x;
+
+            float xPos = Random.Range(centerX - npcLaneWidth, centerX + npcLaneWidth);
             float surfaceY = floorRenderer.bounds.max.y;
-
             float zPos = playerTransform.position.z + spawnDistanceAhead + (i * zSpacing);
-            Vector3 spawnPos = new Vector3(xPos, surfaceY + npc2YOffset, zPos);
 
-            GameObject prefab = npcForwardPrefabs[i % npcForwardPrefabs.Count];
+            Vector3 spawnPos = new Vector3(xPos, surfaceY + npcYOffset, zPos);
+
+            // Fix: Changed from 'npcSideToSide' to 'npcPrefabs'
+            GameObject prefab = npcPrefabs[i % npcPrefabs.Count];
             if (prefab == null) continue;
 
-            GameObject npc = Instantiate(prefab, spawnPos, prefab.transform.rotation, npc2Container);
-            npc.transform.localScale = prefab.transform.localScale;
-
-            ConfigureNPC(npc, NPCCharacter.NPCMovementType.ForwardBackward);
+            GameObject npc = Instantiate(prefab, spawnPos, prefab.transform.rotation, npcContainer);
+            
+            // Set up the script and apply SideToSide logic
+            ConfigureNPC(npc, NPCCharacter.NPCMovementType.SideToSide, minX, maxX);
             spawned++;
         }
 
-        spawnedNPC2Count = spawned;
-        return true;
+        spawnedNPCCount = spawned;
     }
 
-    private bool ConfigureNPC(GameObject npc, NPCCharacter.NPCMovementType type)
+    private void ConfigureNPC(GameObject npc, NPCCharacter.NPCMovementType type, float minX, float maxX)
     {
-        if (npc == null) return false;
-
         NPCCharacter npcScript = npc.GetComponent<NPCCharacter>();
-        if (npcScript == null)
-        {
-            npcScript = npc.AddComponent<NPCCharacter>();
-        }
+        if (npcScript == null) npcScript = npc.AddComponent<NPCCharacter>();
 
         npcScript.movementType = type;
         npcScript.moveSpeed = moveSpeed;
         npcScript.moveRange = moveRange;
         npcScript.waitTime = waitTime;
-        return true;
+
+        // Pass the floor limits to the new NPCCharacter script
+        npcScript.SetSideToSideLimits(minX, maxX);
     }
 }

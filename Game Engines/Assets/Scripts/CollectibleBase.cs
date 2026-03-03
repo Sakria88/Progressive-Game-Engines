@@ -5,6 +5,7 @@
 //(e.g. increasing score, granting power-ups, etc.). 
 //The collectible will be destroyed upon successful collection.
 using UnityEngine;
+using DLLCollectables;
 
 [RequireComponent(typeof(Collider))]
 public abstract class CollectibleBase : MonoBehaviour

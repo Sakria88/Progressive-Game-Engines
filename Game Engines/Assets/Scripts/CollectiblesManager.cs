@@ -5,7 +5,7 @@
 //collected. The manager also ensures that new collectibles are 
 //spawned ahead of the player as they progress through the level.
 using UnityEngine;
-using DLLGameCollectables;
+using DLLCollectables;
 
 public class CollectiblesManager : MonoBehaviour
 {
@@ -96,15 +96,11 @@ public class CollectiblesManager : MonoBehaviour
     {
         //Debug.Log($"[CollectiblesManager] {nameof(AddCoins)} id={GetInstanceID()} +{amount} coinCount(before)={coinCount}");
         if (amount <= 0) return false;
-        // //Update the player's coin count for UIManager to display
-        // if (PlayerCharacter.Instance != null)
-        // {
-        //     PlayerCharacter.Instance.AddCoin(amount);
-        // }
-
+    
         // Update manager's internal coin count for scoring and milestone tracking
         coinCount += amount;
         Debug.Log("Total Coins: " + coinCount);
+        // TotalCoinsCollected += amount;
 
         // Award score: +100 every time the player reaches 20 coins (and again at 40, 60, ...)
         if (coinsPerScoreStep > 0 && pointsPerScoreStep > 0)

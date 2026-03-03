@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using DLLGameCollectables;
+using DLLCollectables;
 
 public class ScoreUI : MonoBehaviour
 {

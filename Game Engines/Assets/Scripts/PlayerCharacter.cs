@@ -1,7 +1,9 @@
 // This script defines the behavior of the player character in the game.
+// It handles player movement, jumping, and interactions with 
+//collectibles and power-ups. 
 using System.Collections;
 using UnityEngine;
-
+using DLLCollectables;
 public class PlayerCharacter : CharacterBase
 {
     [Header("Player Movement")]

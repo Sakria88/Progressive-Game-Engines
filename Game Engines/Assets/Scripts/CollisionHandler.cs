@@ -5,6 +5,7 @@
 //game elements upon respawn. 
 using System.Collections;
 using UnityEngine;
+using DLLCollectables;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -93,7 +94,7 @@ public class CollisionHandler : MonoBehaviour
                 if (f != null) f.ResetFloor();
             }
         }
-        
+
         if (CollectiblesManager.Instance != null)
         {
             CollectiblesManager.Instance.ResetCoins();

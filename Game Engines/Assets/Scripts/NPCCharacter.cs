@@ -10,6 +10,10 @@ using UnityEngine;
 
 public class NPCCharacter : CharacterBase
 {
+    [Header("Movement Limits")]
+    public float minX;
+    public float maxX;
+    private bool hasXLimits = false;
     public enum NPCMovementType
     {
         SideToSide,
@@ -38,12 +42,31 @@ public class NPCCharacter : CharacterBase
         float offset = Mathf.Sin(t) * moveRange;
         Vector3 target = anchorPos;
 
-        if (movementType == NPCMovementType.SideToSide) target.x += offset;
-        else target.z += offset;
+        if (movementType == NPCMovementType.SideToSide) 
+        {
+            target.x += offset;
+            if (hasXLimits) 
+            {
+                target.x = Mathf.Clamp(target.x, minX, maxX);
+            }
+        }   
+        else 
+        {
+            target.z += offset;
+        }
 
         if (rb != null && rb.isKinematic == false) rb.MovePosition(target);
         else transform.position = target;
 
         return true;
+    }
+    public void SetSideToSideLimits(float minX, float maxX)
+    {
+        // Implementation logic here, for example:
+        this.minX = minX;
+        this.maxX = maxX;
+        this.hasXLimits = true;
+        //Ensure anchor position itself isn't outside limits
+        anchorPos.x = Mathf.Clamp(anchorPos.x, minX, maxX);
     }
 }

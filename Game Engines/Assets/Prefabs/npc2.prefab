@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c29d6d12dbef855429b79507ab7d3bc9, type: 3}
       propertyPath: m_Name
-      value: NPC2
+      value: npc2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c29d6d12dbef855429b79507ab7d3bc9, type: 3}
       propertyPath: m_TagString
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  minX: 0
+  maxX: 0
   movementType: 0
   moveRange: 5
   waitTime: 0

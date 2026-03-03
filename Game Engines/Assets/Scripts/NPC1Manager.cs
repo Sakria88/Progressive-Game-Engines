@@ -1,4 +1,5 @@
-// This manager handles the spawning of NPC1 (side-to-side movement) on the floor.
+// This manager handles the spawning of NPC1 (side-to-side movement) 
+//on the floor.
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -203,13 +204,13 @@ public class NPC1Manager : MonoBehaviour
             }
 
             // Configure NPC and IMPORTANT: lock side-to-side limits to this floor
-            NPC npcScript = npc.GetComponent<NPC>();
+            NPCCharacter npcScript = npc.GetComponent<NPCCharacter>();
             if (npcScript == null)
             {
-                npcScript = npc.AddComponent<NPC>();
+                npcScript = npc.AddComponent<NPCCharacter>();
             }
 
-            npcScript.movementType = NPC.NPCMovementType.SideToSide;
+            npcScript.movementType = NPCCharacter.NPCMovementType.SideToSide;
             npcScript.moveSpeed = moveSpeed;
             npcScript.moveRange = moveRange;
             npcScript.waitTime = waitTime;

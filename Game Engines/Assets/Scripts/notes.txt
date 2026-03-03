@@ -1,12 +1,8 @@
 NPC1= FORWARD N BACKWARD 
 NPC2= SIDE TO SIDE
 
-
-fix coin ui set up first
-
-reset coin when player respawns 
-reset speed when player respawns
-fix issue with coin not counting in the ui page
+Sort out the game manager script and ui (Game over Screen , Pause Screen)
+reset speed when player respawns--- half done 
 fix issue with speed change not counting for the players actual speed when booster collected
 
 

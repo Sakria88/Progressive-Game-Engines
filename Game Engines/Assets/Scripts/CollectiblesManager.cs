@@ -43,7 +43,7 @@ public class CollectiblesManager : MonoBehaviour
     [SerializeField] private int pointsPerScoreStep = 100;
 
 
-    private int coinCount;
+    public int coinCount{get; private set;}
     // DLL score system owned by the manager so ScoreUI can subscribe.
     private readonly ScoreSystem scoreSystem = new ScoreSystem();
 
@@ -94,9 +94,15 @@ public class CollectiblesManager : MonoBehaviour
 
     public bool AddCoins(int amount)
     {
-        
+        //Debug.Log($"[CollectiblesManager] {nameof(AddCoins)} id={GetInstanceID()} +{amount} coinCount(before)={coinCount}");
         if (amount <= 0) return false;
+        // //Update the player's coin count for UIManager to display
+        // if (PlayerCharacter.Instance != null)
+        // {
+        //     PlayerCharacter.Instance.AddCoin(amount);
+        // }
 
+        // Update manager's internal coin count for scoring and milestone tracking
         coinCount += amount;
         Debug.Log("Total Coins: " + coinCount);
 
@@ -115,6 +121,30 @@ public class CollectiblesManager : MonoBehaviour
             float spawnFarAhead = playerTransform.position.z + (totalCollectibles * distanceBetweenCoins);
             SpawnCoinAtPosition(spawnFarAhead);
         }
+        return true;
+    }
+
+    public bool ResetCoins()
+    {
+        //Debug.Log($"[CollectiblesManager] {nameof(ResetCoins)} id={GetInstanceID()} coinCount(before)={coinCount}");
+        coinCount = 0;
+
+        // Reset milestone tracking (20, 40, 60...)
+        nextCoinMilestone = coinsPerScoreStep;
+
+        Debug.Log("Coins reset to 0");
+
+        return true;
+    }
+    public bool ResetAllProgress()
+    {
+        coinCount = 0;
+        nextCoinMilestone = coinsPerScoreStep;
+
+        scoreSystem.Reset();
+
+        Debug.Log("Coins and Score reset");
+
         return true;
     }
 

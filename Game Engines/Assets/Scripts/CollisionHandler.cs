@@ -93,6 +93,11 @@ public class CollisionHandler : MonoBehaviour
                 if (f != null) f.ResetFloor();
             }
         }
+        
+        if (CollectiblesManager.Instance != null)
+        {
+            CollectiblesManager.Instance.ResetCoins();
+        }
 
         return true;
     }

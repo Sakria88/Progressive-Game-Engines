@@ -48,7 +48,8 @@ public class UIManager : MonoBehaviour
     private void UpdateCoinsUI()
     {
         if (coinText == null) return;
-        coinText.text = "Coins: " + player.TotalCoinsCollected.ToString();
+        coinText.text = "Coins: " + CollectiblesManager.Instance.coinCount.ToString();
+        // coinText.text = "Coins: " + player.TotalCoinsCollected.ToString();
         Debug.Log($"[Collectible] Coin Collected | Total Coins = {player.TotalCoinsCollected}");
     }
 

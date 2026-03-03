@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 using UnityEngine;
 
 public class SpeedBooster : MonoBehaviour
@@ -13,12 +15,15 @@ public class SpeedBooster : MonoBehaviour
         if (!collected &&other.CompareTag("Player"))
         {
             collected = true; // Ensure the boost is only applied once
-            PlayerController playerController = other.GetComponent<PlayerController>();
+            PlayerCharacter playerCharacter = other.GetComponent<PlayerCharacter>();
 
-            if (playerController != null)
+            if (playerCharacter != null)
             {
+                // Activate the speed boost on the player character
+                playerCharacter.ActivateSpeedBoost(2.0f, 5.0f); 
+                Debug.Log("SpeedBooster: Activated speed boost for player ");
                 // Start the boost on the PLAYER's script so it doesn't die
-                StartCoroutine(ApplySpeedBoost(playerController));
+                // StartCoroutine(ApplySpeedBoost(playerCharacter));
             }
             GetComponent<MeshRenderer>().enabled = false; // Hide the speed booster visually
             GetComponent<Collider>().enabled = false; // Disable the collider to prevent multiple triggers
@@ -27,11 +32,11 @@ public class SpeedBooster : MonoBehaviour
         }
     }
 
-    private IEnumerator ApplySpeedBoost(PlayerController playerController)
+    private IEnumerator ApplySpeedBoost(PlayerCharacter playerCharacter)
     {
-        playerController.moveSpeed += speedIncrease; // Increase the player's speed
+        playerCharacter.moveSpeed += speedIncrease; // Increase the player's speed
         yield return new WaitForSeconds(boostDuration); // Wait for the boost duration
-        playerController.moveSpeed -= speedIncrease; // Reset the player's speed
+        playerCharacter.moveSpeed -= speedIncrease; // Reset the player's speed
         Destroy(gameObject); // Destroy the speed booster object after the boost duration
     }
 }

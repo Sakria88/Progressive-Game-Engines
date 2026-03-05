@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9125898251935502465, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1bada7cd92ef52546816c66ad97e0381, type: 2}
     - target: {fileID: -8679921383154817045, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
       propertyPath: m_LocalScale.x
       value: 40
@@ -60,6 +64,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6542367647312899303, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: be0ff3d5cf18a44409b7da766facf601, type: 2}
+    - target: {fileID: -5205098268142651274, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 73b11a0197bd8d046a7c9d35ca0d0a12, type: 2}
+    - target: {fileID: -4396642182433536433, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 73b11a0197bd8d046a7c9d35ca0d0a12, type: 2}
+    - target: {fileID: -2541548562851171029, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1bada7cd92ef52546816c66ad97e0381, type: 2}
     - target: {fileID: 919132149155446097, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
       propertyPath: m_Name
       value: Player
@@ -68,10 +88,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1767827694111484553, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 73b11a0197bd8d046a7c9d35ca0d0a12, type: 2}
     - target: {fileID: 2223639932434330405, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
       propertyPath: m_CullingType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4724978299841676805, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1bada7cd92ef52546816c66ad97e0381, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -1895213390092701054, guid: ed1d8fdb34e06ec4f864e7f626722680, type: 3}
@@ -158,6 +186,7 @@ MonoBehaviour:
   moveSpeed: 15
   forwardSpeed: 50
   laneWidth: 8
+  normalMoveSpeed: 15
   jumpForce: 10
   groundCheckDistance: 1
   groundLayer:

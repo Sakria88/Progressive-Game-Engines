@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CollisionHandler collisionHandler;
     [SerializeField] private PlayerCharacter player;
     [SerializeField] private Transform respawnPoint;
-    [SerializeField] private float gameOverDelay = 10f;
+    [SerializeField] private float gameOverDelay = 5f;
     public enum GameState
     {
         Playing,

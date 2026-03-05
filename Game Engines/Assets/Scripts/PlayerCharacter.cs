@@ -9,18 +9,22 @@ public class PlayerCharacter : CharacterBase
     [Header("Player Movement")]
     [SerializeField] private float forwardSpeed = 20f;
     [SerializeField] private float laneWidth = 11f;
+    [SerializeField] private float normalMoveSpeed = 15f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 7f;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private UIManager uiManager;
+
     private float xInput;
     private bool jumpQueued;
     public bool isGrounded;
 
     private float normalForwardSpeed;
-    private float normalMoveSpeed;
+    
+    public float NormalMoveSpeed => normalMoveSpeed;
     //coins collected 
     public int TotalCoinsCollected { get; private set; }
 
@@ -132,23 +136,58 @@ public class PlayerCharacter : CharacterBase
         speedRoutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
         return true;
     }
+    // public event System.Action<float> OnMoveSpeedChanged;
+
+    // private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
+    // {
+    //     moveSpeed = normalMoveSpeed * multiplier;
+    //     forwardSpeed = normalForwardSpeed * multiplier;
+
+    //     Debug.Log($"[SpeedBoost] Boosted moveSpeed = {moveSpeed}");
+    //     OnMoveSpeedChanged?.Invoke(moveSpeed);
+
+    //     yield return new WaitForSeconds(duration);
+
+    //     moveSpeed = normalMoveSpeed;
+    //     forwardSpeed = normalForwardSpeed;
+
+    //     OnMoveSpeedChanged?.Invoke(moveSpeed);
+
+    //     speedRoutine = null;
+    // }
 
     private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
     {
         forwardSpeed = normalForwardSpeed * multiplier;
         moveSpeed = normalMoveSpeed * multiplier;
 
+        // Update UI immediately
+        UIManager.Instance.RefreshSpeedUI();
+        UIManager.Instance.ShowBoostMessage("Booster Activated", 1.1f);
+
         yield return new WaitForSeconds(duration);
 
         forwardSpeed = normalForwardSpeed;
         moveSpeed = normalMoveSpeed;
 
+        // Update UI back to normal
+        UIManager.Instance.RefreshSpeedUI();
+        
+
         speedRoutine = null;
     }
+    
     public float CurrentSpeed
     {
         get { return forwardSpeed; }
     }
+
+    //property for current move speed (sideways)
+    public float CurrentMoveSpeed
+    {
+        get { return moveSpeed; }
+    }
+    
 
     // ===== Shield (FUNCTION ONLY) =====
     public bool ActivateShield(float durationSeconds)

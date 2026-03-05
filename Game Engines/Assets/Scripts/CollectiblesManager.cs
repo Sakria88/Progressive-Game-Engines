@@ -45,7 +45,7 @@ public class CollectiblesManager : MonoBehaviour
 
     public int coinCount{get; private set;}
     // DLL score system owned by the manager so ScoreUI can subscribe.
-    private readonly ScoreSystem scoreSystem = new ScoreSystem();
+    private ScoreSystem scoreSystem = new ScoreSystem();
 
     // Tracks the next milestone at which we should award points (20, 40, 60, ...)
     private int nextCoinMilestone;
@@ -137,7 +137,7 @@ public class CollectiblesManager : MonoBehaviour
         coinCount = 0;
         nextCoinMilestone = coinsPerScoreStep;
 
-        scoreSystem.Reset();
+        scoreSystem = new ScoreSystem();
 
         Debug.Log("Coins and Score reset");
 

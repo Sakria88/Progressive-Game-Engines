@@ -7,6 +7,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DLLCollectables;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,8 +22,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI speedText;
+    
     [SerializeField] private GameObject pausePanel;
+
+    [Header("Boost UI")]
+    [SerializeField] private GameObject boostPanel;
+    [SerializeField] private TextMeshProUGUI boostText;
+
+    [Header("Game Over UI")]
+    [SerializeField] private TextMeshProUGUI coinsCollectedText;
+    [SerializeField] private TextMeshProUGUI oldScoreText;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI newScoreText;
+
+    private int previousScore = 0;
+    private int lastRunScore = 0;
     
     private void Awake()
     {
@@ -34,7 +49,10 @@ public class UIManager : MonoBehaviour
         {
             scoreUI.Initialise(collectiblesManager);
         }
+        
         RefreshAllUI();
+        
+        
     }
 
     private void Update()
@@ -73,13 +91,22 @@ public class UIManager : MonoBehaviour
             scoreText.text = "Score: " + scoreSystem.Score;
         }
     }
-
+    public void RefreshSpeedUI()
+    {
+        UpdateSpeedUI();
+    }
     private void UpdateSpeedUI()
     {
         if (speedText == null) return;
+        float baseSpeed = player.NormalMoveSpeed;
+        float currentSpeed = player.CurrentMoveSpeed;
+        // player.OnMoveSpeedChanged += speed =>
+        
+        speedText.text = $"Speed: {currentSpeed:F1}";
+        
+        // speedText.text = $"Speed: {currentSpeed:0} (base {baseSpeed:0})";
 
-        // Replace this once you have speed info exposed (e.g., current forward speed).
-        speedText.text = "Speed: " + player.CurrentSpeed.ToString("0");
+        // speedText.text = "Speed: " + player.CurrentMoveSpeed.ToString("0");
         
     }
     
@@ -90,6 +117,45 @@ public class UIManager : MonoBehaviour
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(state == GameManager.GameState.GameOver);
+        if (state == GameManager.GameState.GameOver)
+        {
+            UpdateGameOverUI();
+        }
+    }
+    private void UpdateGameOverUI()
+    {
+        if (collectiblesManager == null) return;
+
+        var scoreSystem = collectiblesManager.GetScoreSystem();
+
+        int coins = CollectiblesManager.Instance.coinCount;
+        int currentScore = scoreSystem != null ? scoreSystem.Score : 0;
+
+        if (coinsCollectedText != null)
+            coinsCollectedText.text = "Coins Collected: " + coins;
+
+        if (oldScoreText != null)
+            oldScoreText.text = "Old Score: " + previousScore;
+
+        if (newScoreText != null)
+            newScoreText.text = "New Score: " + currentScore;
+
+        previousScore = currentScore;
+    }
+    
+    public void ShowBoostMessage(string message, float duration)
+    {
+        StartCoroutine(BoostMessageRoutine(message, duration));
+    }
+
+    private IEnumerator BoostMessageRoutine(string message, float duration)
+    {
+        boostPanel.SetActive(true);
+        boostText.text = message;
+
+        yield return new WaitForSeconds(duration);
+
+        boostPanel.SetActive(false);
     }
 
     

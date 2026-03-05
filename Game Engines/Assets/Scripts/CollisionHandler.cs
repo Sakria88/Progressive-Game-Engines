@@ -80,6 +80,20 @@ public class CollisionHandler : MonoBehaviour
     {
         RespawnPlayer();
     }
+    public class ScoreSystem
+    {
+        public int Score { get; private set; }
+
+        public void AddScore(int amount)
+        {
+            Score += amount;
+        }
+
+        public void ResetScore()
+        {
+            Score = 0;
+        }
+    }
     private bool RespawnPlayer()
     {
         PlayerCharacter player = GetComponent<PlayerCharacter>();
@@ -108,7 +122,7 @@ public class CollisionHandler : MonoBehaviour
 
         if (CollectiblesManager.Instance != null)
         {
-            CollectiblesManager.Instance.ResetCoins();
+            CollectiblesManager.Instance.ResetAllProgress();
         }
 
         return true;

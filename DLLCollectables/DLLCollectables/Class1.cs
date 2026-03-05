@@ -66,6 +66,7 @@ namespace DLLCollectables
     public abstract class DLLCollectibleBase : MonoBehaviour
     {
         [Header("Scoring")]
+        //each collectable can award points when collected.
         [SerializeField] private int pointsOnCollect = 0;
 
         protected bool EnsureTrigger()

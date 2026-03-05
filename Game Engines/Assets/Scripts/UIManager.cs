@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DLLCollectables;
 using System.Collections;
+using DLLGameManager;
 
 public class UIManager : MonoBehaviour
 {
@@ -110,14 +111,14 @@ public class UIManager : MonoBehaviour
         
     }
     
-    public void UpdateUI(GameManager.GameState state)
+    public void UpdateUI(GameState state)
     {
         if (pausePanel != null)
-            pausePanel.SetActive(state == GameManager.GameState.Paused);
+            pausePanel.SetActive(state == GameState.Paused);
 
         if (gameOverPanel != null)
-            gameOverPanel.SetActive(state == GameManager.GameState.GameOver);
-        if (state == GameManager.GameState.GameOver)
+            gameOverPanel.SetActive(state == GameState.GameOver);
+        if (state == GameState.GameOver)
         {
             UpdateGameOverUI();
         }
@@ -130,6 +131,8 @@ public class UIManager : MonoBehaviour
 
         int coins = CollectiblesManager.Instance.coinCount;
         int currentScore = scoreSystem != null ? scoreSystem.Score : 0;
+         // Save score before reset
+        lastRunScore = currentScore;
 
         if (coinsCollectedText != null)
             coinsCollectedText.text = "Coins Collected: " + coins;

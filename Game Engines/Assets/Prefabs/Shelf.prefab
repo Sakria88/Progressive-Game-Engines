@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3cd36debc970bbf49946e808d6eb2aff, type: 2}
     - target: {fileID: 919132149155446097, guid: d29acaed3498181499b803fe24d9716f, type: 3}
       propertyPath: m_Name
-      value: shelfPrefab
+      value: Shelf
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d29acaed3498181499b803fe24d9716f, type: 3}
       propertyPath: m_TagString

@@ -48,42 +48,45 @@ public class ObstacleManager : MonoBehaviour
             SpawnNewObstacle(zPos);
         }
     }
-
-    // void SpawnInitialCompDesk()
-    // {
-    //     // Start spawning boosters 20 units ahead of the player
-    //     for (int i = 0; i < compdeskLimit; i++)
-    //     {
-    //         float zPos = player.position.z + spawnDistanceAhead + (i * distanceBetweenObstacles);
-    //         SpawnNewObstacle(zPos);
-    //     }
-    // }
     
 
     public void SpawnNewObstacle(float zPosition)
     {
+       
         if (obstacleList.Count == 0)
         {
             Debug.LogError("No obstacles assigned to the ObstacleManager!");
             return;
         }
 
-        // 1. Randomly select an obstacle from the list
+        // Randomly select an obstacle from the list
         int index = Random.Range(0, obstacleList.Count);
         GameObject selectedPrefab = obstacleList[index];
 
-        // 2. Calculate a random X position within the spawn range
+        // Calculate a random X position within the spawn range
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
 
-        // 3. Set the spawn position using the coin height logic
-        Vector3 spawnPosition = new Vector3(randomX, floorYPosition, zPosition);
+        float currentY = floorYPosition;
+        // //= floorYPosition; // Assuming all obstacles spawn at the same Y level (floor level)
+        
+        // Adjust height based on the name of the prefab
+        if (selectedPrefab.name.Contains("Shelf"))
+        {
+            currentY = 3.0f; // Adjust this number until it looks right
+        }
+        else if (selectedPrefab.name.Contains("CompDesk"))
+        {
+            currentY = 0.837f; // Adjust this number for the desk
+        }
+        // Set the spawn position using the coin height logic
+        Vector3 spawnPosition = new Vector3(randomX, currentY, zPosition);
 
-        // FIX 1: Use selectedPrefab.transform.rotation instead of Quaternion.identity
-        // This ensures the shelf spawns standing up as shown in your first photo.
+        // changed to using selectedPrefab.transform.rotation instead of Quaternion.identity
+        // This ensures the shelf spawns stands like the original.
         GameObject newObstacle = Instantiate(selectedPrefab, spawnPosition, selectedPrefab.transform.rotation);
 
-        // FIX 2: Pass 'newObstacle' (the clone) to SetupObstacle, NOT the prefab
-        // This ensures the tag and components are added to the object in the scene.
+        //Pass 'newObstacle' (the clone) to SetupObstacle 
+        // instead of 'selectedPrefab' (the original prefab)
         SetupObstacle(newObstacle);    
     }
     private void SetupObstacle(GameObject obj)
@@ -100,14 +103,14 @@ public class ObstacleManager : MonoBehaviour
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb == null)
         {
-            // Adds a Rigidbody if none exists, so it can interact with physics
+            // Add a Rigidbody if none exists, so it can interact with physics
             rb = obj.AddComponent<Rigidbody>();
             rb.isKinematic = true; // Make it static by default
             Debug.LogWarning(obj.name + " was missing a Rigidbody, one has been added and set to kinematic.");
         }
         if (obj.GetComponent<Collider>() == null)
         {
-            // Adds a BoxCollider by default if none exists
+            // Add a BoxCollider by default if none exists
             obj.AddComponent<BoxCollider>();
             Debug.LogWarning(obj.name + " was missing a collider, one has been added.");
         }

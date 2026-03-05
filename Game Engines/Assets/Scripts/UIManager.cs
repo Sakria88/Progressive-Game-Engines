@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
     [SerializeField] private ScoreUI scoreUI;
     [SerializeField] private CollectiblesManager collectiblesManager;
     [Header("References")]
@@ -19,7 +20,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI speedText;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject gameOverPanel;
     
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -74,6 +81,15 @@ public class UIManager : MonoBehaviour
         // Replace this once you have speed info exposed (e.g., current forward speed).
         speedText.text = "Speed: " + player.CurrentSpeed.ToString("0");
         
+    }
+    
+    public void UpdateUI(GameManager.GameState state)
+    {
+        if (pausePanel != null)
+            pausePanel.SetActive(state == GameManager.GameState.Paused);
+
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(state == GameManager.GameState.GameOver);
     }
 
     

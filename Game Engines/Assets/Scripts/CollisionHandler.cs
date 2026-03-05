@@ -59,8 +59,14 @@ public class CollisionHandler : MonoBehaviour
             if (player != null && player.IsShieldActive) return;
 
             hitObstacle = true;
-            RespawnPlayer();
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        GameManager.Instance.GameOver();
+        
     }
 
     private IEnumerator RespawnRoutine()
@@ -69,6 +75,11 @@ public class CollisionHandler : MonoBehaviour
         RespawnPlayer();
     }
 
+    //Public Wrapper, Private Logic
+    public void TriggerRespawn()
+    {
+        RespawnPlayer();
+    }
     private bool RespawnPlayer()
     {
         PlayerCharacter player = GetComponent<PlayerCharacter>();

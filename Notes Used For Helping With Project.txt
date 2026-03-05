@@ -1,0 +1,357 @@
+NPC1= FORWARD N BACKWARD 
+NPC2= SIDE TO SIDE
+
+
+create uml class diagram 
+edit video.- done ish
+
+
+2.72- justice teacher
+
+this time i fixed most of the
+issues i had in the practice
+and avoided the mistakes i made in the begining 
+
+
+add coins id = 18818
+resret coins id + 18818
+
+
+CHARACTERBASE
+Game manager
+backpack
+collectibles manager
+------------------------------------
+coin collectable
+collectible item
+collision handler
+dll enemy bridge
+----------------------
+Enemy Character
+NPC character
+NPC manager
+obstacle
+--------------------
+
+obstacle manager
+player character
+score ui
+shield collectible
+speed booster collectible
+ui manager
+
+
+
+
+Collision handler: handles collisions for the player character, manages interactions with enemies, NPCs, and obstacles, including respawning the player at the start position when necessary. also integrates with the player's backpack system and resets relevant  game elements upon respawn.
+
+CollectableManager: This script manages the spawning and collection of collectibles 
+in the game, including coins, speed boosters, and shields.  handles the initial spawning of these items at set intervals  along the player's path and updates the coin count when coins are  collected. The manager also ensures that new collectibles are  spawned ahead of the player as they progress through the level.
+
+
+collectableBase: This is the base class for all collectibles in the game.  handles the trigger detection and calls the abstract  OnCollected method which derived classes must implement  to define their specific collection behavior  (e.g. increasing score, granting power-ups, etc.).  The collectible will be destroyed upon successful collection.
+
+PlayerCharacter: This script defines the behavior of the player character in the game.  handles player movement, jumping, and interactions with  collectibles and power-ups.  The player can move left and right within defined lanes and can jump
+
+
+
+
+
+
+
+CharacterBase : MonoBehaviour
+# rb : Rigidbody
+# startPosition : Vector3
+# startRotation : Quaternion
++ moveSpeed : float = 10f
+---
+# Awake() : void
+# FixedUpdate() : void
+# Tick() : bool (Abstract)
+"+ TeleportTo(position: Vector3, rotation: Quaternion) : bool"
++ ResetToStart() : bool
+
+
+GameManager : MonoBehaviour
+- collisionHandler : CollisionHandler
+- player : PlayerCharacter
+- respawnPoint : Transform
+- gameOverDelay : float = 5f
+- _stateController : GameStateController
++ Instance : GameManager (Static)
+---
++ CurrentState : GameState (Property)
+- Awake() : void
+- Start() : void
+- Update() : void
++ SetState(newState: GameState) : void
++ PauseGame() : void
++ ResumeGame() : void
++ GameOver() : void
+- GameOverRoutine() : IEnumerator
+
+
+
+
+BackPack
++ itemName : string
++ itemCount : int
++ capacity : int (Static)
+---
++ BackPack() (Default Constructor)
++ BackPack(capacity: int) (Overloaded Constructor)
++ AddToBackpack() : void
+
+
+
+CollectiblesManager : MonoBehaviour
+- CoinPrefab : GameObject
+- SpeedBooster : GameObject
+- ShieldPrefab : GameObject
+- playerTransform : Transform
+- scoreSystem : ScoreSystem
++ coinCount : int (Private Set)
++ Instance : CollectiblesManager (Static)
+---
+- Awake() : void
+- Start() : void
++ GetScoreSystem() : ScoreSystem
++ AddCoins(amount: int) : bool
++ ResetCoins() : bool
++ ResetAllProgress() : bool
+
+
+
+CoinCollectible : CollectibleBase
+- amount : int = 1
+---
+# OnCollected(player: PlayerCharacter) : bool
+
+
+
+
+CollectibleItem : MonoBehaviour
++ typeOfItem : string[]
+- startPos : Vector3
++ floatFrequency : float = 1f
++ floatAmplitude : float = 0.5f
+---
+- Start() : void
+- Update() : void
+
+
+
+CollisionHandler : MonoBehaviour
++ myBackpack : BackPack
+- spawnPlayer : Vector3
++ floors : InfiniteFloor[]
+- enemyCharacter : EnemyCharacter
+- hitObstacle : bool
+---
+- Start() : void
+- CheckObstacleTimer() : IEnumerator
+- OnCollisionEnter(collision: Collision) : void
+- Die() : void
+- RespawnRoutine() : IEnumerator
++ TriggerRespawn() : void
+- RespawnPlayer() : bool
+
+
+DLLEnemyBridge : MonoBehaviour
+- player : Transform
+- enemy : EnemyCharacter
+- respawnBehindZ : float = 25f
+- npcPrefabs : List<GameObject>
+- npcContainer : Transform
+- floorObjects : GameObject[]
+- countPerType : int = 6
+- spawnDistanceAhead : float = 50f
+- zSpacing : float = 12f
+- npcLaneWidth : float = 3f
+- npcYOffset : float = 0.05f
+- moveSpeed : float = 3f
+- moveRange : float = 2f
+- waitTime : float = 0.5f
+- dllSpawner : EnemyNpcSpawner
+---
+- Awake() : void
+- Start() : void
+- SpawnNpcsFromDll() : void
+- BuildFloorInfo() : List<FloorInfo>
+
+
+
+EnemyCharacter : CharacterBase
+- player : Transform
+- chaseDelaySeconds : float = 3f
+- isChasing : bool
+---
+# Awake() : void
+# Tick() : bool
+- EnableChasing() : void
++ ResetEnemy() : bool
+
+
+
+NPCCharacter : CharacterBase
++ minX : float
++ maxX : float
+- hasXLimits : bool = false
++ movementType : NPCMovementType
++ moveRange : float = 7f
++ waitTime : float = 0f
+- anchorPos : Vector3
+- t : float
+---
+# Awake() : void
+# Tick() : bool
+"+ SetSideToSideLimits(minX: float, maxX: float) : void"
+
+
+
+
+NPCManager : MonoBehaviour
+- laneCount : int = 3
+- npcPrefabs : List<GameObject>
+- floorObjects : GameObject[]
+- playerTransform : Transform
+- spawnedNPCCount : int
+- activeNPCs : List<GameObject>
+---
+- Start() : void
+- Update() : void
+- EnsureContainer() : void
+- SpawnAllNPCs() : void
+"- SpawnSingleNPC(type: NPCMovementType, index: int) : void"
+"- ConfigureNPC(npc: GameObject, type: NPCMovementType, minX: float, maxX: float) : void"
+- RespawnNPC(npc: GameObject) : void
+
+
+
+
+
+
+
+Obstacle : MonoBehaviour
++ typeOfItem : string
+---
+- Awake() : void
+
+
+ObstacleManager : MonoBehaviour
++ player : Transform
++ shelfPrefab : GameObject
++ CompDeskPrefab : GameObject
++ shelfLimit : int = 40
++ compdeskLimit : int = 40
++ spawnDistanceAhead : float = 150f
++ floorYPosition : float = 3f
++ obstacleList : List<GameObject>
++ Instance : ObstacleManager (Static)
+---
+- Awake() : void
+- Start() : void
+- SpawnInitialShelf() : void
++ SpawnNewObstacle(zPosition: float) : void
+- SetupObstacle(obj: GameObject) : void
+
+
+
+
+PlayerCharacter : CharacterBase
+- forwardSpeed : float = 20f
+- laneWidth : float = 11f
+- jumpForce : float = 7f
+- isGrounded : bool
++ TotalCoinsCollected : int (Private Set)
++ IsShieldActive : bool (Private Set)
+- speedRoutine : Coroutine
++ Instance : PlayerCharacter (Static)
+---
++ NormalMoveSpeed : float (Property)
+# Awake() : void
+- Update() : void
+# Tick() : bool
+- ApplyMovement() : bool
+- ApplyJump() : bool
++ AddCoin(amount: int) : bool
+"+ ActivateSpeedBoost(multiplier: float, duration: float) : bool"
++ ActivateShield(durationSeconds: float) : bool
+
+
+
+ScoreUI : MonoBehaviour
+- manager : CollectiblesManager
+- scoreText : TMP_Text
+- score : ScoreSystem
+---
++ Initialise(managerRef: CollectiblesManager) : void
+- OnDestroy() : void
+- OnScoreChanged(newScore: int) : void
+
+
+
+ShieldCollectible
+| ShieldCollectible : CollectibleBase |
+| :--- |
+| - durationSeconds : float = 5f |
+| --- |
+| # OnCollected(player: PlayerCharacter) : bool |
+
+
+
+
+SpeedBoosterCollectible
+| SpeedBoosterCollectible : CollectibleBase |
+| :--- |
+| - multiplier : float = 1.4f |
+| - duration : float = 5f |
+| --- |
+| # OnCollected(player: PlayerCharacter) : bool |
+
+
+
+
+UIManager : MonoBehaviour
++ Instance : UIManager (Static)
+- player : PlayerCharacter
+- coinText : TextMeshProUGUI
+- scoreText : TextMeshProUGUI
+- speedText : TextMeshProUGUI
+- pausePanel : GameObject
+- gameOverPanel : GameObject
+---
+- Awake() : void
+- Start() : void
+- Update() : void
++ RefreshSpeedUI() : void
++ UpdateUI(state: GameState) : void
+- UpdateGameOverUI() : void
++ ShowBoostMessage(message: string, duration: float) : void
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -291,8 +291,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4441640620962728039}
   - component: {fileID: 7821846983789437931}
-  - component: {fileID: 2097823037408105765}
   - component: {fileID: 1770557713301689758}
+  - component: {fileID: 2947231426893581029}
   m_Layer: 0
   m_Name: Screw Driver
   m_TagString: Untagged
@@ -329,32 +329,14 @@ Animation:
   m_GameObject: {fileID: 3956465256214926045}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 399b3c6c1bb28654b804180a670632a6, type: 2}
+  m_Animation: {fileID: 7400000, guid: 53d808e9633294f468ca2c3a7ecc4d67, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 399b3c6c1bb28654b804180a670632a6, type: 2}
+  - {fileID: 7400000, guid: 53d808e9633294f468ca2c3a7ecc4d67, type: 2}
+  - {fileID: 7400000, guid: 38d45d1ae24591545997ad07688fd223, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &2097823037408105765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3956465256214926045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718870826bab8ba4bafeeb5835171983, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeOfItem:
-  - Coin
-  - Speed Booster
-  - Shield
-  - 'Screw Driver '
-  floatFrequency: 1
-  floatAmplitude: 0.5
 --- !u!65 &1770557713301689758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -376,6 +358,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2947231426893581029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956465256214926045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1adfe74bcaf1d5e408639834386fb087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 6
+  minX: 0
+  maxX: 0
+  movementType: 0
+  moveRange: 7
+  waitTime: 0
 --- !u!1 &4094974120647172822
 GameObject:
   m_ObjectHideFlags: 0

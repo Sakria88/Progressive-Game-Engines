@@ -4,7 +4,7 @@ public class EnemyCharacter : CharacterBase
 {
     [Header("Enemy")]
     [SerializeField] private Transform player;
-    [SerializeField] private float chaseDelaySeconds = 5f;
+    [SerializeField] private float chaseDelaySeconds = 3f;
 
     private bool isChasing;
 

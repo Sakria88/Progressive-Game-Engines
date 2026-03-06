@@ -62,7 +62,7 @@ public class NPCCharacter : CharacterBase
     }
     public void SetSideToSideLimits(float minX, float maxX)
     {
-        // Implementation logic here, for example:
+        // Implementation logic to set side-to-side movement limits
         this.minX = minX;
         this.maxX = maxX;
         this.hasXLimits = true;

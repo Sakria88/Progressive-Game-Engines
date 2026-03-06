@@ -1,3 +1,5 @@
+// This script defines the behavior of an enemy character 
+//that chases the player after a delay.
 using UnityEngine;
 
 public class EnemyCharacter : CharacterBase

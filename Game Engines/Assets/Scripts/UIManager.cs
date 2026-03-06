@@ -75,7 +75,6 @@ public class UIManager : MonoBehaviour
     {
         if (coinText == null) return;
         coinText.text = "Coins: " + CollectiblesManager.Instance.coinCount.ToString();
-        // coinText.text = "Coins: " + player.TotalCoinsCollected.ToString();
         Debug.Log($"[Collectible] Coin Collected | Total Coins = {player.TotalCoinsCollected}");
     }
 
@@ -83,9 +82,7 @@ public class UIManager : MonoBehaviour
     {
         if (scoreText == null) return;
 
-        // Replace this once you add a Score variable to PlayerCharacter.
-        // scoreText.text = "Score: " + player.TotalScore.ToString();
-        // scoreText.text = "Score: 0";
+        // Get current score from the collectibles manager's score system
         var scoreSystem = collectiblesManager.GetScoreSystem();
         if (scoreSystem != null)
         {
@@ -101,13 +98,9 @@ public class UIManager : MonoBehaviour
         if (speedText == null) return;
         float baseSpeed = player.NormalMoveSpeed;
         float currentSpeed = player.CurrentMoveSpeed;
-        // player.OnMoveSpeedChanged += speed =>
         
         speedText.text = $"Speed: {currentSpeed:F1}";
         
-        // speedText.text = $"Speed: {currentSpeed:0} (base {baseSpeed:0})";
-
-        // speedText.text = "Speed: " + player.CurrentMoveSpeed.ToString("0");
         
     }
     

@@ -1,3 +1,6 @@
+// This script serves as a bridge between your 
+//existing Unity enemy/NPC setup and the DLL logic 
+//for spawning and positioning.
 using System.Collections.Generic;
 using UnityEngine;
 using DLLEnemy;
@@ -47,7 +50,8 @@ public class DLLEnemyBridge : MonoBehaviour
     {
         if (player == null) return;
 
-        // ===== 1) Spawn/position enemy behind player once =====
+        //Spawn/position enemy behind player once at start. 
+        // The DLL will handle timing for when it starts chasing.
         if (enemy != null)
         {
             EnemySpawnRequest req = dllSpawner.CreateEnemySpawnBehindPlayer(
@@ -60,10 +64,10 @@ public class DLLEnemyBridge : MonoBehaviour
             enemy.transform.position = new Vector3(req.Position.X, req.Position.Y, req.Position.Z);
 
             // EnemyCharacter already waits chaseDelaySeconds in Awake()
-            // and ResetEnemy() waits again, so we don't need DLL logic for that.
+            // and ResetEnemy() waits again, I don't need DLL logic for that.
         }
 
-        // ===== 2) Spawn NPCs =====
+        //Spawn NPCs using DLL logic 
         SpawnNpcsFromDll();
     }
 
@@ -120,7 +124,8 @@ public class DLLEnemyBridge : MonoBehaviour
             }
         }
     }
-
+    // Helper method to convert floor GameObjects into FloorInfo 
+    // for the DLL.
     private List<FloorInfo> BuildFloorInfo()
     {
         List<FloorInfo> floors = new List<FloorInfo>();

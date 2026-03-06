@@ -26,6 +26,7 @@ public abstract class CharacterBase : MonoBehaviour
 
     protected abstract bool Tick();
 
+    // Teleports the character to a specific position and rotation. Returns true if successful.
     public bool TeleportTo(Vector3 position, Quaternion rotation)
     {
         if (rb != null && rb.isKinematic == false)

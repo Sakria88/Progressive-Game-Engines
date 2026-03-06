@@ -66,17 +66,17 @@ public class ObstacleManager : MonoBehaviour
         // Calculate a random X position within the spawn range
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
 
+        // Get the Y position from the floor's bounds
         float currentY = floorYPosition;
-        // //= floorYPosition; // Assuming all obstacles spawn at the same Y level (floor level)
         
         // Adjust height based on the name of the prefab
         if (selectedPrefab.name.Contains("Shelf"))
         {
-            currentY = 3.0f; // Adjust this number until it looks right
+            currentY = 3.0f; //shelf height
         }
         else if (selectedPrefab.name.Contains("CompDesk"))
         {
-            currentY = 0.837f; // Adjust this number for the desk
+            currentY = 0.837f; //desk height
         }
         // Set the spawn position using the coin height logic
         Vector3 spawnPosition = new Vector3(randomX, currentY, zPosition);

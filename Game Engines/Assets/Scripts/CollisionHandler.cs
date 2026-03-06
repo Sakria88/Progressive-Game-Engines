@@ -38,7 +38,7 @@ public class CollisionHandler : MonoBehaviour
     {
         PlayerCharacter player = GetComponent<PlayerCharacter>();
 
-        // Enemy (Character-derived) - still respawns (you did NOT ask to block this)
+        // Enemy (Character-derived) - still respawns even if shield active, as it's a "lethal" collision type
         if (collision.gameObject.GetComponent<EnemyCharacter>() != null)
         {
             StartCoroutine(RespawnRoutine());
@@ -62,7 +62,7 @@ public class CollisionHandler : MonoBehaviour
             Die();
         }
     }
-
+    // Handles player death and triggers game over.
     private void Die()
     {
         GameManager.Instance.GameOver();

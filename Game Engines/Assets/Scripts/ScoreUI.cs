@@ -1,3 +1,6 @@
+//This script is responsible for displaying the player's score 
+//on the UI. It listens to changes in the ScoreSystem and 
+//updates the score text accordingly.
 using UnityEngine;
 using TMPro;
 using DLLCollectables;

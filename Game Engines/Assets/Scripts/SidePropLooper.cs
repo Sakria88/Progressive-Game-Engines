@@ -5,18 +5,18 @@ using UnityEngine;
 public class SidePropLooper : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Transform runner;            // player or main camera
-    [SerializeField] private Transform[] props;           // shelves + desk (4 items)
+    [SerializeField] private Transform runner; // player or main camera
+    [SerializeField] private Transform[] props; // shelves + desk (4 items)
 
     [Header("Loop Settings")]
-    [SerializeField] private float segmentLength = 40f;   // distance between repeating positions (tune this)
-    [SerializeField] private float recycleBehind = 15f;   // how far behind runner before recycling
+    [SerializeField] private float segmentLength = 40f;// distance between repeating positions of the props
+    [SerializeField] private float recycleBehind = 15f; // how far behind player/runner before recycling
 
     private int propCount;
 
     private int Start()
     {
-        // If runner not set, try to find the main camera
+        // If runner/player not set, try to find the main camera
         if (runner == null)
         {
             runner = Camera.main != null ? Camera.main.transform : null;

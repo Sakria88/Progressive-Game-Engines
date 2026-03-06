@@ -1,3 +1,5 @@
+// This script defines a collectible item that grants the 
+//player a temporary speed boost when collected.
 using UnityEngine;
 
 public class SpeedBoosterCollectible : CollectibleBase

@@ -28,10 +28,10 @@ public class PlayerCharacter : CharacterBase
     //coins collected 
     public int TotalCoinsCollected { get; private set; }
 
-    // ===== Speed boost state =====
+    //Speed boost state (FUNCTION ONLY)
     private Coroutine speedRoutine;
 
-    // ===== Shield state (FUNCTION ONLY) =====
+    //Shield state (FUNCTION ONLY) 
     public bool IsShieldActive { get; private set; }
     private Coroutine shieldRoutine;
 
@@ -121,7 +121,7 @@ public class PlayerCharacter : CharacterBase
         return true;
     }
 
-    // ===== Speed boost =====
+    // Speed boost (FUNCTION ONLY) 
     public bool ActivateSpeedBoost(float multiplier, float duration)
     {
         if (speedRoutine != null)
@@ -136,25 +136,6 @@ public class PlayerCharacter : CharacterBase
         speedRoutine = StartCoroutine(SpeedBoostRoutine(multiplier, duration));
         return true;
     }
-    // public event System.Action<float> OnMoveSpeedChanged;
-
-    // private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
-    // {
-    //     moveSpeed = normalMoveSpeed * multiplier;
-    //     forwardSpeed = normalForwardSpeed * multiplier;
-
-    //     Debug.Log($"[SpeedBoost] Boosted moveSpeed = {moveSpeed}");
-    //     OnMoveSpeedChanged?.Invoke(moveSpeed);
-
-    //     yield return new WaitForSeconds(duration);
-
-    //     moveSpeed = normalMoveSpeed;
-    //     forwardSpeed = normalForwardSpeed;
-
-    //     OnMoveSpeedChanged?.Invoke(moveSpeed);
-
-    //     speedRoutine = null;
-    // }
 
     private IEnumerator SpeedBoostRoutine(float multiplier, float duration)
     {
@@ -189,7 +170,7 @@ public class PlayerCharacter : CharacterBase
     }
     
 
-    // ===== Shield (FUNCTION ONLY) =====
+    //Shield (FUNCTION ONLY)
     public bool ActivateShield(float durationSeconds)
     {
         if (shieldRoutine != null)

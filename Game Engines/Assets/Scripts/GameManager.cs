@@ -19,15 +19,6 @@ public class GameManager : MonoBehaviour
     private GameStateController _stateController;
     // Property to expose the DLL state to the rest of Unity
     public GameState CurrentState => _stateController.CurrentState;
-    // public enum GameState
-    // {
-    //     Playing,
-    //     Paused,
-    //     GameOver
-    // }
-    // public static GameManager Instance;
-
-    // public GameState CurrentState { get; private set; }
 
     private void Awake()
     {
@@ -101,10 +92,4 @@ public class GameManager : MonoBehaviour
         SetState(GameState.Playing);
     }
 
-    // private void RespawnPlayer()
-    // {
-    //     if (player == null || respawnPoint == null) return;
-
-    //     player.transform.position = respawnPoint.position;
-    // }
 }

@@ -71,6 +71,8 @@ public class NPCManager : MonoBehaviour
         }
     }
 
+    // Helper method to ensure we have a container for 
+    // NPCs in the hierarchy.
     private void EnsureContainer()
     {
         GameObject container = GameObject.Find("NPC_SideToSide_Container");
@@ -81,6 +83,7 @@ public class NPCManager : MonoBehaviour
         npcContainer = container.transform;
     }
 
+    // Spawns all NPCs based on the configured counts and types.
     private void SpawnAllNPCs()
     {
         activeNPCs.Clear();
@@ -104,6 +107,8 @@ public class NPCManager : MonoBehaviour
             Debug.Log($"Spawned {spawned} NPCs (ForwardBack: {forwardBackCount}, Side: {totalNPCs - forwardBackCount})");
         }
     }
+    // Handles collision with NPCs and obstacles, 
+    // blocking respawn if shield is active.
     private void SpawnSingleNPC(NPCCharacter.NPCMovementType type, int index)
     {
         Debug.Log($"SpawnSingleNPC called: type={type}, index={index}");
@@ -163,7 +168,7 @@ public class NPCManager : MonoBehaviour
         ConfigureNPC(npc, type, floorRenderer.bounds.min.x, floorRenderer.bounds.max.x);
     }
    
-
+    // Handles collision with NPCs and obstacles,
     private void ConfigureNPC(GameObject npc, NPCCharacter.NPCMovementType type, float minX, float maxX)
     {
         NPCCharacter npcScript = npc.GetComponent<NPCCharacter>();
@@ -180,6 +185,8 @@ public class NPCManager : MonoBehaviour
         npcScript.SetSideToSideLimits(minX, maxX);
     }
 
+    // Handles collision with NPCs and obstacles, 
+    // blocking respawn if shield is active.
     private void RespawnNPC(GameObject npc)
     {
         GameObject selectedFloor = floorObjects[Random.Range(0, floorObjects.Length)];

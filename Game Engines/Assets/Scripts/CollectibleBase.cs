@@ -18,7 +18,7 @@ public abstract class CollectibleBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Works whether the collider is on the root OR on a child of the player
+        // Check if the collider belongs to a PlayerCharacter
         PlayerCharacter player = other.GetComponentInParent<PlayerCharacter>();
         if (player == null)
         {

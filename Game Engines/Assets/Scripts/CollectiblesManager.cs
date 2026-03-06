@@ -100,9 +100,8 @@ public class CollectiblesManager : MonoBehaviour
         // Update manager's internal coin count for scoring and milestone tracking
         coinCount += amount;
         Debug.Log("Total Coins: " + coinCount);
-        // TotalCoinsCollected += amount;
-
-        // Award score: +100 every time the player reaches 20 coins (and again at 40, 60, ...)
+        
+        // Award score: +100 every time the player reaches 10 coins (and again at 40, 60, ...)
         if (coinsPerScoreStep > 0 && pointsPerScoreStep > 0)
         {
             while (coinCount >= nextCoinMilestone)
@@ -132,6 +131,8 @@ public class CollectiblesManager : MonoBehaviour
 
         return true;
     }
+    // Resets all progress related to collectibles, 
+    // including coins and score milestones.
     public bool ResetAllProgress()
     {
         coinCount = 0;

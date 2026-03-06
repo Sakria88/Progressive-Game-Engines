@@ -23,9 +23,7 @@ namespace DLLCollectables
     {
         public static Collectables Instance { get; private set; } = null;
         public ScoreSystem ScoreSystem { get; private set; } = new ScoreSystem();
-        // Add your spawner fields here if you want this script to do spawning 
-        // public GameObject[] collectiblePrefabs; 
-        // public float spawnInterval = 2f; 
+        
         protected bool AwakeCollectables()
         {
             if (Instance != null && Instance != this) return false;
@@ -66,7 +64,7 @@ namespace DLLCollectables
     public abstract class DLLCollectibleBase : MonoBehaviour
     {
         [Header("Scoring")]
-        //each collectable can award points when collected.
+        //coin collectable can award points when collected.
         [SerializeField] private int pointsOnCollect = 0;
 
         protected bool EnsureTrigger()
@@ -232,8 +230,7 @@ namespace DLLCollectables
 
             float cutoffZ = player.position.z - despawnBehindDistance;
 
-            // Cheap cleanup: remove any spawned collectible that fell behind.
-            // You can optimize later by tracking spawned instances in a list.
+            
             DLLCollectibleBase[] all = FindObjectsOfType<DLLCollectibleBase>();
             for (int i = 0; i < all.Length; i++)
             {

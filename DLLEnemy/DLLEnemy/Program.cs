@@ -131,7 +131,7 @@ namespace DLLEnemy
             {
                 FloorInfo floor = floors[_rng.Next(0, floors.Count)];
 
-                // X within center +/- npcLaneWidth (same as your NPCManager)
+                // X within center +/- npcLaneWidth (same as NPCManager)
                 float x = NextRange(floor.CenterX - npcLaneWidth, floor.CenterX + npcLaneWidth);
 
                 float y = floor.SurfaceY + npcYOffset;
